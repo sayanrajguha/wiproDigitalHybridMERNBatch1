@@ -1,0 +1,218 @@
+/*
+
+My Custom CSS
+=============
+
+Author:  Sayanraj Guha
+Updated: May 2016
+Notes:	 Hybrid Training Bootstrap 3 Wipro Digital
+
+*/
+
+
+/* --------------------------------------
+   Layout
+   -------------------------------------- */
+#main {
+  overflow-x: hidden;
+}
+ #featuredHeroes {
+   text-align: center;
+ }
+footer {
+  background: #333;
+  color: #eee;
+  font-size: 11px;
+  padding: 10px;
+}
+footer li {
+  display: inline;
+  padding-right: 20px;
+}
+.copyright a {
+  text-decoration: none;
+  color: #999999;
+  cursor: pointer; cursor: hand;
+}
+.copyright a:hover {
+  color: #428bca;
+}
+.sitemap-navigation a {
+  text-decoration: none;
+  color: #999999;
+  cursor: pointer; cursor: hand;
+}
+.sitemap-navigation a:hover {
+  color: #428bca;
+}
+#alertCallout {
+  margin-top: 15px;
+}
+
+/* --------------------------------------
+   Typography
+   -------------------------------------- */
+
+
+
+/* --------------------------------------
+   Navbar
+   -------------------------------------- */
+
+
+
+/* --------------------------------------
+   Carousel
+   -------------------------------------- */
+#bannerCarousel,#call-us-section {
+  margin-top: 60px;
+}
+
+#call-us-section {
+  display: none;
+}
+.carousel-caption {
+  font-size: 24px;
+}
+.carousel-caption h4 {
+  font-size: 36px;
+}
+
+#bannerCarousel .item {
+  height: 400px;
+}
+
+#banner1 {
+  background: url("/images/dota-banner-1-medium.jpg") top center no-repeat;
+}
+
+#banner2 {
+  background: url("/images/dota-banner-2-medium.jpg") top center no-repeat;
+}
+
+#banner3 {
+  background: url("/images/dota-banner-3-medium.jpg") top center no-repeat;
+}
+/* --------------------------------------
+   Global Styles
+   -------------------------------------- */
+#call-us-section {
+ display: none;
+}
+.alert {
+ display: none;
+}
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+
+   /* Custom, iPhone Retina */
+
+
+ /* Extra Small Devices, Phones */
+ @media screen and (max-width:320px) {
+   /*#bannerCarousel .item {
+     min-height: 152px;
+   }
+
+   #banner1 {
+     background: url("/images/dota-banner-1-mobile.jpg") top center no-repeat;
+   }
+
+   #banner2 {
+     background: url("/images/dota-banner-2-mobile.jpg") top center no-repeat;
+   }
+
+   #banner3 {
+     background: url("/images/dota-banner-3-mobile.jpg") top center no-repeat;
+   }*/
+   #bannerCarousel {
+     display: none;
+   }
+   .hero-image {
+     width: 100%;
+   }
+
+ }
+
+ /* Small Devices, Tablets */
+ @media screen and (max-width:640px) {
+   #call-us-section {
+     display: block;
+   }
+   #bannerCarousel {
+     display: none;
+   }
+   footer li {
+     padding-right: 10px;
+   }
+   .alert {
+    margin-top: 50px;
+    margin-bottom: -40px;
+   }
+   /*#bannerCarousel .item {
+     min-height: 346px;
+   }
+
+   #banner1 {
+     background: url("/images/dota-banner-1-small.jpg") top center no-repeat;
+   }
+
+   #banner2 {
+     background: url("/images/dota-banner-2-small.jpg") top center no-repeat;
+   }
+
+   #banner3 {
+     background: url("/images/dota-banner-3-small.jpg") top center no-repeat;
+   }*/
+
+   #headingLead {
+     font-size: 15px;
+   }
+   .hero-image {
+     width: 100%;
+   }
+ }
+
+ /* Medium Devices, Desktops */
+ @media screen and (max-width:968px) {
+
+   #bannerCarousel .item {
+     min-height: 447px;
+   }
+
+   #banner1 {
+     background: url("/images/dota-banner-1-medium.jpg") top center no-repeat;
+   }
+
+   #banner2 {
+     background: url("/images/dota-banner-2-medium.jpg") top center no-repeat;
+   }
+
+   #banner3 {
+     background: url("/images/dota-banner-3-medium.jpg") top center no-repeat;
+   }
+   .hero-image {
+     width: 100%;
+   }
+ }
+
+ /* Large Devices, Wide Screens */
+ @media screen and (min-width : 1200px) {
+   #bannerCarousel .item {
+     min-height: 556px;
+   }
+
+   #banner1 {
+     background: url("/images/dota-banner-1-large.jpg") top center no-repeat;
+   }
+
+   #banner2 {
+     background: url("/images/dota-banner-2-large.jpg") top center no-repeat;
+   }
+
+   #banner3 {
+     background: url("/images/dota-banner-3-large.jpg") top center no-repeat;
+   }
+ }

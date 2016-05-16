@@ -1,0 +1,180 @@
+.wrap {
+  width: 1310px;
+  overflow-x: hidden;   /* Hides the horizontal scrollbar which appears as a result of the extra space being occupied by margins/paddings*/
+}
+header {
+  background-image: url("/images/dota-logo.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.heading {
+  margin-top: 5px;
+}
+.heading-title {
+  color: #b3d9ff;
+  font-family: 'Crete Round', serif;  /* Custom google font applies, if not available basic font serif applies */
+  font-size: 60px;
+  text-shadow: 1px 1px 10px #ffffe6;
+}
+.heading-desc {
+  color: #e6e6ff;
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  text-shadow: 1px 1px 15px #ffffe6;
+}
+.hero-unit {
+  border-bottom-style: ridge;
+  border-bottom-width: thin;
+  height: 130px;
+}
+
+#banner {
+  background-image: url("/images/dota-banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  width: 1310px;
+  height: 623px;
+  box-shadow: 0px 0px 20px #666600;
+}
+#banner-text {
+  color:  #ffff33;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 70px;
+  align-self: flex-end;
+  margin-left: 150px;
+  text-shadow: 2px 2px 20px #ffeee6;
+}
+nav {
+  margin-top: 60px;
+}
+nav li {
+  display: inline;
+  margin-left: 9%;
+  margin-right: 20px;
+}
+nav li a {
+  font-family: 'Luckiest Guy', monospace;;
+  text-decoration: none;
+  font-size: 22px;
+  color: #00cccc;
+  font-variant: small-caps;
+}
+nav li a:hover {
+  color: #ecc6d9;
+  text-decoration: underline;
+}
+.read-more-link:hover {
+    color: brown;
+}
+.primary {
+  min-width: 100%;
+  margin-left: 80px;
+}
+.main {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 10px;
+}
+h4 {
+  color: #ffb366;
+}
+.content-box {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.footer_section {
+  margin: 10px 10px 10px 10px;
+}
+.copyright {
+  margin-top: 20px;
+  color: #999999;
+}
+.copyright a {
+  text-decoration: none;
+  color: #999999;
+  cursor: pointer; cursor: hand;
+}
+.copyright a:hover {
+  color: black;
+}
+.social-media {
+  padding-left: 40%;
+  margin-top: 10px;
+}
+.footer_section li {
+  display: inline;
+}
+.foot {
+  min-width: 100%;
+  border-top-style: ridge;
+  border-top-width: thin;
+  background: #f2f2f2;
+}
+.favicon {
+  width: 32px;
+  height: 32px;
+}
+/* Following code sets an image in each span on home page. Each span corresponds to each hero.*/
+#earthshaker_img {
+  background-image: url('/images/earthshaker.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+#sven_img {
+  background-image: url('/images/sven.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+#tiny_img {
+  background-image: url('/images/tiny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+#bm_img {
+  background-image: url('/images/bmaster.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+#kunkka_img {
+  background-image: url('/images/kunkka.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+#dk_img {
+  background-image: url('/images/dragon-knight.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 256px;
+  height: 144px;
+  display: block;
+}
+.sub-heading {
+  font-family: 'Special Elite', cursive;
+  font-size: 50px;
+  color: #e67300;
+  text-shadow: #000000;
+  font-weight: bold;
+}
+#earthshaker_desc p,#sven_desc p, #tiny_desc p,#kunkka_desc p,#dk_desc p,#bm_desc p {
+  font-family: 'Kalam', monospace;
+  font-size: 15px;
+  width: 256px;
+}
