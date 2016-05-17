@@ -20,8 +20,7 @@ Notes:	 Hybrid Training Bootstrap 3 Wipro Digital
    text-align: center;
  }
 footer {
-  background: #333;
-  color: #eee;
+  background: #f2f2f2;
   font-size: 11px;
   padding: 10px;
 }
@@ -35,7 +34,7 @@ footer li {
   cursor: pointer; cursor: hand;
 }
 .copyright a:hover {
-  color: #428bca;
+  color: darkblue;
 }
 .sitemap-navigation a {
   text-decoration: none;
@@ -43,7 +42,7 @@ footer li {
   cursor: pointer; cursor: hand;
 }
 .sitemap-navigation a:hover {
-  color: #428bca;
+  color: darkblue;
 }
 #alertCallout {
   margin-top: 15px;
@@ -76,6 +75,15 @@ footer li {
 }
 .carousel-caption h4 {
   font-size: 36px;
+}
+#banner2 .carousel-caption h4, #banner1 .carousel-caption h4 {
+  text-shadow: 1px 1px 10px white;
+}
+#banner2 .carousel-caption p, #banner1 .carousel-caption p {
+  text-shadow: 1px 1px 5px darkred;
+}
+#banner3 .carousel-caption h4, #banner3 .carousel-caption p {
+  text-shadow: 10px 10px 10px black;
 }
 
 #bannerCarousel .item {
@@ -112,21 +120,6 @@ footer li {
 
  /* Extra Small Devices, Phones */
  @media screen and (max-width:320px) {
-   /*#bannerCarousel .item {
-     min-height: 152px;
-   }
-
-   #banner1 {
-     background: url("/images/dota-banner-1-mobile.jpg") top center no-repeat;
-   }
-
-   #banner2 {
-     background: url("/images/dota-banner-2-mobile.jpg") top center no-repeat;
-   }
-
-   #banner3 {
-     background: url("/images/dota-banner-3-mobile.jpg") top center no-repeat;
-   }*/
    #bannerCarousel {
      display: none;
    }
@@ -151,21 +144,6 @@ footer li {
     margin-top: 50px;
     margin-bottom: -40px;
    }
-   /*#bannerCarousel .item {
-     min-height: 346px;
-   }
-
-   #banner1 {
-     background: url("/images/dota-banner-1-small.jpg") top center no-repeat;
-   }
-
-   #banner2 {
-     background: url("/images/dota-banner-2-small.jpg") top center no-repeat;
-   }
-
-   #banner3 {
-     background: url("/images/dota-banner-3-small.jpg") top center no-repeat;
-   }*/
 
    #headingLead {
      font-size: 15px;
