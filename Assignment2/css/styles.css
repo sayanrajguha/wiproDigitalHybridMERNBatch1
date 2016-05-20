@@ -110,7 +110,9 @@ footer li {
 .alert {
  display: none;
 }
-
+.dropdown-menu {
+  background-color: #eeeeee;
+}
 /* --------------------------------------
    Media Queries
    -------------------------------------- */
@@ -150,6 +152,10 @@ footer li {
    }
    .hero-image {
      width: 100%;
+   }
+   .dropdown-menu {
+     width: 100%;
+     /*background-color: #d5d5d5;*/
    }
  }
 
