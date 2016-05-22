@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Example</title>
+    <link rel="stylesheet" href="css/styles-stacked.css" charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/d3-legend.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <p class="heading">Life Expectancy at birth for Female (F) and Male (M)</p>
+    <p class="sub-heading">cumulated for Asian countries over the years supplied (1960 - 2015)</p>
+    <script>
+      var outerWidth = 1200;
+      var outerHeight = 500;
+      var margin = {  top : 20, right : 10, bottom : 80, left : 40};
+      var barPadding = 0.4;
+      var colorColumn = "indicator";
+      var layerColumn = colorColumn;
+      var yColumn = "average";
+      var xColumn = "year";
+      var layerColumn = colorColumn;
+
+      var innerWidth  = outerWidth  - margin.left - margin.right;
+      var innerHeight = outerHeight - margin.top  - margin.bottom;
+
+      var svg = d3.select("body").append("svg")
+        .attr("width",  outerWidth)
+        .attr("height", outerHeight);
+      var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      var xAxisG = g.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + innerHeight + ")");
+      var yAxisG = g.append("g")
+        .attr("class", "y axis");
+      var colorLegendG = g.append("g")
+              .attr("class", "color-legend")
+              .attr("transform", "translate(640, 0)");
+      var xScale = d3.scale.ordinal().rangeBands([0, innerWidth], barPadding);
+      var yScale = d3.scale.linear().range([innerHeight, 0]);
+      var colorScale = d3.scale.category10();
+
+      // Use a modified SI formatter that uses "B" for Billion.
+      var siFormat = d3.format("s");
+      var customTickFormat = function (d){
+        return siFormat(d).replace("G", "B");
+      };
+
+      var xAxis = d3.svg.axis().scale(xScale).orient("bottom")
+        .outerTickSize(0);
+      var yAxis = d3.svg.axis().scale(yScale).orient("left")
+        .ticks(5)
+        .tickFormat(customTickFormat)
+        .outerTickSize(0);
+      var colorLegend = d3.legend.color()
+              .scale(colorScale)
+              .orient("horizontal")
+              .shapePadding(10)
+              .shapeWidth(30)
+              .shapeHeight(15)
+              .labelOffset(10);
+      function render(data){
+
+        var grouped = d3.nest()
+                    .key(function(d) { return d.IndicatorCode;})
+                    .key(function(d) { return d.Year;})
+                    .rollup(function(leaves) {
+                      //d3.select("body").text(leaves.length);
+                      var sum = 0;
+                      leaves.forEach(function(s) {
+                        sum += Number(s.Value);
+                      });
+                      return (sum/leaves.length);
+                    })
+                    .entries(data);
+            var indicatorName = "";
+           for(var value in grouped) {
+             indicatorName = grouped[value].key;
+             grouped[value].values = grouped[value].values.map(function(d) {
+               return {
+                 year : d.key,
+                 average : d.values,
+                 indicator : indicatorName
+               }
+             });
+           }
+        console.table(grouped);
+
+        var stack = d3.layout.stack()
+          .y(function (d){ return d[yColumn]; })
+          .values(function (d){ return d.values; });
+
+        var layers = stack(grouped);
+
+
+
+        xScale.domain(layers[0].values.map(function (d){
+          return d[xColumn];
+        }));
+
+        yScale.domain([
+          40,
+          d3.max(layers, function (layer){
+            return d3.max(layer.values, function (d){
+              return d.y0 + 10;
+            });
+          })
+        ]);
+
+        colorScale.domain(layers.map(function (layer){
+          return layer.key;
+        }));
+
+        xAxisG.call(xAxis)
+        .selectAll('text')
+        .attr("transform","rotate(-60)")
+        .attr("dx","-.3em")
+        .attr("dy",".25em")
+        .style("text-anchor","end")
+        .style("font-size","15px")
+        .style("font-weight","bold")
+        .style("font-family","monospace");
+        yAxisG.call(yAxis);
+
+        var layerGroups = g.selectAll(".layer").data(layers);
+        layerGroups.enter().append("g").attr("class", "layer");
+        layerGroups.exit().remove();
+        layerGroups.style("fill", function (d){
+          return colorScale(d.key);
+        });
+
+        var bars = layerGroups.selectAll("rect").data(function (d){
+          return d.values;
+        });
+        bars.enter().append("rect")
+        bars.exit().remove();
+
+        bars
+        .attr('height', 0)
+        .attr('y',innerHeight)
+        .transition().duration(1000)
+        .delay(function(d,i) {  return i * 150; })
+          .attr("x", function (d){ return xScale(d[xColumn]); })
+          .attr("y", function (d){ return yScale(d.y); })
+          .attr("width", xScale.rangeBand())
+          .attr("height", function (d){ return innerHeight - yScale(d.y); })
+
+          colorLegendG.call(colorLegend);
+      }
+
+      d3.json("../../LocalOutput/maleFemale.json", render);
+
+    </script>
+    <footer class="footer">
+      <section class="copyright">
+          <p>
+            <i>Created by</i>
+            <strong>Sayanraj Guha</strong>
+          </p>
+      </section>
+      <section class="copyright">
+          &copy; <i><a href="mailto:sayanrajguha@gmail.com?Subject=Hello" target="_top">sayanrajguha@gmail.com</a></i><br>
+          <!-- clicking the above link would trigger the default mailing software associated with the user's system addressed to the email id -->
+          <b>All rights reserved.</b>
+      </section>
+    </footer>
+  </body>
+</html>

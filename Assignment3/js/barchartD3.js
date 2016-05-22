@@ -27,7 +27,7 @@ var yAxis = d3.svg.axis()
 /******************************************************************************
 Logic for total json filtration
 *******************************************************************************/
-  d3.json('../../../LocalOutput/total.json', function(error,data) {
+  d3.json('../../LocalOutput/total.json', function(error,data) {
     if(error) {
       console.log(error);
     }

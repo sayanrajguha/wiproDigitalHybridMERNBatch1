@@ -1,0 +1,49 @@
+body {
+  overflow-y: hidden;
+}
+.heading,.sub-heading {
+  text-align: center;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 30px;
+  word-wrap: break-word;
+  margin-top: -10px;
+}
+.sub-heading {
+  font-family: monospace;
+  font-size: 25px;
+  font-weight: 200;
+}
+footer {
+  margin-top: -60px;
+}
+.copyright {
+  color: #999999;
+  width: auto;
+  text-align: center;
+}
+.copyright a {
+  text-decoration: none;
+  color: #999999;
+  cursor: pointer; cursor: hand;
+}
+.copyright a:hover {
+  color: black;
+}
+.axis text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12pt;
+}
+.axis .label {
+  font-size: 20pt;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.color-legend text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12pt;
+}
