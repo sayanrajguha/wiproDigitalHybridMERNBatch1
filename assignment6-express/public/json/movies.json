@@ -1,0 +1,34 @@
+[
+  {
+    "id": "0",
+    "Poster": "harry-potter-8-poster.jpg",
+    "Title": "Harry Potter and the Deathly Hallows: Part 2",
+    "Year": "2011",
+    "Language": "English",
+    "Genre": "Adventure, Drama, Fantasy",
+    "Director": "\"David Yates",
+    "Writer": "Steve Kloves (screenplay), J.K. Rowling (novel)",
+    "Actors": "Ralph Fiennes, Michael Gambon, Alan Rickman, Daniel Radcliffe",
+    "Plot": "Harry, Ron and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+    "Released": "15 Jul 2011",
+    "Runtime": "130 min",
+    "imdbRating": "8.1",
+    "Awards": "Nominated for 3 Oscars. Another 44 wins & 82 nominations."
+  },
+  {
+    "id": "1",
+    "Poster": "the-dark-knight-poster.jpg",
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Language": "English, Mandarin",
+    "Genre": "Action, Crime, Thriller",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "imdbRating": "9.0",
+    "Awards": "Won 2 Oscars. Another 146 wins & 141 nominations."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "assignment6-express",
+  "version": "1.0.0",
+  "description": "workspace for assignment 6 - working with node js and express js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sayanraj Guha",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "multiparty": "^4.1.2"
+  }
+}
