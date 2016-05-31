@@ -1,0 +1,50 @@
+[
+  {
+    "id": "0",
+    "Poster": "harry1.jpg",
+    "Title": "Harry Potter and the Sorcerer's Stone",
+    "Year": "2001",
+    "Language": "English",
+    "Genre": "Adventure, Family, Fantasy",
+    "Director": "Chris Columbus",
+    "Writer": " J.K. Rowling (novel), Steve Kloves (screenplay)",
+    "Actors": "Richard Harris, Maggie Smith, Robbie Coltrane, Saunders Triplets",
+    "Plot": "Rescued from the outrageous neglect of his aunt and uncle, a young boy with a great destiny proves his worth while attending Hogwarts School of Witchcraft and Wizardry.",
+    "Released": "16 Nov 2001",
+    "Runtime": "152 min",
+    "imdbRating": "7.5",
+    "Awards": "Nominated for 3 Oscars. Another 17 wins & 60 nominations."
+  },
+  {
+    "id": "1",
+    "Poster": "harry2.jpg",
+    "Title": "Harry Potter and the Chamber of Secrets",
+    "Year": "2002",
+    "Language": "English",
+    "Genre": "Adventure, Family, Fantasy",
+    "Director": "Chris Columbus",
+    "Writer": "J.K. Rowling (novel), Steve Kloves (screenplay)",
+    "Actors": "Daniel Radcliffe, Rupert Grint, Emma Watson, Richard Griffiths",
+    "Plot": "Harry ignores warnings not to return to Hogwarts, only to find the school plagued by a series of mysterious attacks and a strange voice haunting him.",
+    "Released": "15 Nov 2002",
+    "Runtime": "161 min",
+    "imdbRating": "7.4",
+    "Awards": "Nominated for 3 BAFTA Film Awards. Another 11 wins & 39 nominations."
+  },
+  {
+    "id": "2",
+    "Poster": "harry3.jpg",
+    "Title": "Harry Potter and the Prisoner of Azkaban",
+    "Year": "2004",
+    "Language": "English",
+    "Genre": "Adventure, Family, Fantasy",
+    "Director": "Alfonso Cuarón",
+    "Writer": "J.K. Rowling (novel), Steve Kloves (screenplay)",
+    "Actors": "Daniel Radcliffe, Richard Griffiths, Pam Ferris, Fiona Shaw",
+    "Plot": "It's Harry's third year at Hogwarts; not only does he have a new Defense Against the Dark Arts teacher, but there is also trouble brewing. Convicted murderer Sirius Black has escaped the Wizards' Prison and is coming after Harry.",
+    "Released": "04 Jun 2004",
+    "Runtime": "142 min",
+    "imdbRating": "7.8",
+    "Awards": "Nominated for 2 Oscars. Another 14 wins & 42 nominations."
+  }
+]

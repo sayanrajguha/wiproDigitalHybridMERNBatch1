@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title><%= title %></title>
+
+    <meta name="description" content="Assignment for Wipro Digital MERN stack training">
+    <meta name="author" content="Sayanraj Guha">
+    <link href="/css/reset.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.form.min.js"></script>
+  </head>
+  <body>
+  <div class="jumbotron" id="myEmptyJumboTron">
+    <div class="container text-center">
+      <h1 class="display-3"><span class="glyphicon glyphicon-shopping-cart"></h1><h2>Oops!</h2>
+      <p class="lead">Your To-Watch Slate is Clean...</span></p>
+      <hr class="m-y-2">
+      <p>Let's make one!</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg btnAdd" href="javascript:void(0)" role="button">Click here to add a Movie</a>
+      </p>
+
+    </div>
+  </div>
+  <div class="container-fluid" id="main">
+	<div class="row heading">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h3>
+					Movies to watch <strong>before you die</strong>
+				</h3>
+			</div>
+		</div>
+	</div>
+  <div class="row">
+    <div class="alert alert-success alert-block fade in" id="successAlert">
+      <button type="button" class="close" id="successAlertHide">&times;</button>
+      <h4></h4>
+    </div><!-- end alert -->
+  </div>
+  	<div class="row">
+  		<div class="col-md-12">
+  			<div class="row main-content">
+  				<div class="col-md-3 col-sm-6 col-xs-12">
+            <div id="img-wrap">
+              <img alt="Movie Poster" id="poster" src="/images/image-placeholder.png">
+            </div>
+  				</div>
+  				<div class="col-md-9 col-sm-6 col-xs-12 text-content">
+  					<p id="movieTitle">
+
+  					</p>
+  					<div class="row">
+  						<div class="col-md-2 col-sm-4">
+  							<p>
+  								<span>Year</span> : <span id="year"></span>
+  							</p>
+  						</div>
+  						<div class="col-md-10 col-sm-6">
+  							<p>
+  								<span>Language</span> : <span id="language"></span>
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-2 col-sm-4">
+  							<p>
+  								Genre :
+  							</p>
+  						</div>
+  						<div class="col-md-10 col-sm-6">
+  							<p id="genre">
+
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-2 col-sm-4">
+  							<p>
+  								Director :
+  							</p>
+  						</div>
+  						<div class="col-md-10 col-sm-6">
+  							<p id="director">
+
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-2 col-sm-4">
+  							<p>
+  								Writer :
+  							</p>
+  						</div>
+  						<div class="col-md-10 col-sm-6">
+  							<p id="writer">
+
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-2 col-sm-4">
+  							<p>
+  								Actors :
+  							</p>
+  						</div>
+  						<div class="col-md-10 col-sm-6">
+  							<p id="actors">
+
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-12">
+  							<p id="plot">
+
+  							</p>
+  						</div>
+  					</div>
+  					<div class="row lastRow">
+  						<span>
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span id="releaseDate">
+
+                </span>
+              </span>
+              <span>|</span>
+              <span>
+                <span class="glyphicon glyphicon-time"></span>
+                <span id="runTime">
+
+                </span>
+              </span>
+              <span>|</span>
+              <span>
+                <strong>Rating</strong>
+                <span class="stars" id="rating"></span>
+              </span>
+              <span>|</span>
+              <span>
+                <strong>Nomination and Awards </strong>
+                :
+                <span id="awards">
+
+                </span>
+              </span>
+  					</div>
+  				</div>
+          <div class="row">
+            <div class="btn-group" role="group" aria-label="crud button group">
+                <a href="javascript:void(0)" role="button" class="btn btn-info crud-buttons btnAdd" id="">Add Movie</a>
+                <a href="javascript:void(0)" class="btn btn-warning crud-buttons" role="button" id="btnUpdate">Update Movie</a>
+                <a href="javascript:void(0)" class="btn btn-danger crud-buttons" role="button" id="btnDelete">Delete Movie</a>
+            </div>
+          </div>
+  			</div>
+        <div class="text-center">
+          <ul class="pager">
+            <li class="previous">
+              <a href="javascript:void(0)" id="loadPrev">&larr;Prev</a>
+            </li>
+            <li class="next">
+              <a href="javascript:void(0)" id="loadNext">Next&rarr;</a>
+            </li>
+          </ul> <!-- end pager -->
+        </div> <!-- end holder div for pager -->
+  		</div>  <!-- end holder div for content -->
+  	</div> <!-- end row -->
+</div>  <!-- end main -->
+<div class="modal fade" id="addMovieModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">New Movie</h3>
+      </div>	<!-- end modal-header -->
+      <div class="modal-body">
+        <div class="img-holder">
+          <div class="container-fluid">
+            <img alt="Movie Poster" id="addFormPoster" src="/images/image-placeholder.png">
+            <a role="button" class="btn btn-info btn-large btn-block" id="uploadTrigger"><span class="glyphicon glyphicon-picture"></span></a>
+          </div>  <!-- end conteiner-fluid -->
+        </div>  <!-- end img-holder -->
+        <div class="row text-center error-bg">
+          <span class="error-message" id="movieError">There is an error!</span>
+        </div>  <!-- end holder div for error -->
+        <form role="form" method="post" id="addMovieForm">
+          <input type="hidden" name="id" id="txtId" value="0">
+          <input type="hidden" name="Poster" id="txtPoster" value="">
+          <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" name="Title" id="txtTitle" required="true" value="" class="form-control" placeholder="e.g. Harry Potter,etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Year">Year</label>
+            <input type="text" name="Year" id="txtYear" value="" class="form-control" placeholder="e.g. 1990,etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Language">Language</label>
+            <input type="text" name="Language" id="txtLanguage" value="" class="form-control" placeholder="e.g. English,Hindi,etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Genre">Genre</label>
+            <input type="text" name="Genre" id="txtGenre" value="" class="form-control" placeholder="e.g. Action, Thriller,etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Director">Director</label>
+            <input type="text" name="Director" id="txtDirector" value="" class="form-control">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Writer">Writer</label>
+            <input type="text" name="Writer" id="txtWriter" value="" class="form-control" placeholder="Book/Novel Writer, Screenplay writer, etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Actors">Actors</label>
+            <input type="text" name="Actors" id="txtActors" value="" class="form-control" placeholder="e.g. Mary Jane, Laural, etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Plot">Plot</label>
+            <textarea name="Plot" id="txtPlot" rows="5" class="form-control"></textarea>
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Released">Release Date</label>
+            <input type="text" name="Released" id="txtReleaseDate" value="" class="form-control"  placeholder="e.g. 15 July 2002 etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Runtime">Run Time</label>
+            <input type="text" name="Runtime" id="txtRunTime" value="" class="form-control" placeholder="e.g. 120 min etc.">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="imdbRating">Rating</label>
+            <input type="text" name="imdbRating" id="txtRating" value="" class="form-control" placeholder="Enter rating between 0 - 10">
+          </div>  <!-- end form group -->
+          <div class="form-group">
+            <label for="Awards">Nomination &amp; Awards</label>
+            <input type="text" name="Awards" id="txtAwards" value="" class="form-control" placeholder="e.g. 3 oscars, 4 nominations, etc.">
+          </div>  <!-- end form group -->
+
+          <button type="button" name="submitButton" id="addMovieSubmit" class="btn btn-info form-control">Add Movie</button>
+          <button type="button" name="submitButton" id="updateMovieSubmit" class="btn btn-warning form-control hidden">Update Movie</button>
+        </form>	<!-- end form -->
+      </div><!--end modal-body-->
+    </div>	<!-- end modal-content -->
+  </div>	<!-- end modal dialog -->
+</div>	<!-- end addMovieModal -->
+
+<div class="modal fade" id="uploadImageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Upload Image</h3>
+      </div>	<!-- end modal-header -->
+      <div class="modal-body">
+        <form action="/uploadImage" method="post" id="uploadImageForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="hidden" name="name" id="txtMoviePoster" value="" class="filestyle">
+          </div>
+          <div class="form-group">
+            <input type="file" name="images" class="filestyle" data-buttonName="btn-primary">
+          </div>
+          <input type="submit" name="submit" class="btn btn-primary form-control" value="Upload">
+        </form>
+      </div><!--end modal-body-->
+    </div>	<!-- end modal-content -->
+  </div>	<!-- end modal dialog -->
+</div>	<!-- end uploadImageModal -->
+
+<div class="modal fade" id="deleteConfirmModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body clearfix">
+        <p>
+          <strong>Are you sure?</strong>
+        </p>
+        <div class="pull-right">
+          <button type="button" class="btn btn-danger" id="btnConfirmDelete">OK</button>
+          <button type="button" class="btn btn-danger" id="btnCancelDelete">Cancel</button>
+        </div>
+      </div><!--end modal-body-->
+    </div>	<!-- end modal-content -->
+  </div>	<!-- end modal dialog -->
+</div>	<!-- end deleteConfirmModal -->
+
+<script src="/js/bootstrap-filestyle.min.js"> </script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
