@@ -1,0 +1,361 @@
+/************************
+Custom CSS Stylesheet
+Author : Sayanraj Guha
+fileName : style.css
+All rights reserved.
+************************/
+body {
+  overflow: auto;
+  width: 100%;
+  padding-top: 70px;
+}
+.main-content {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 1px;
+  margin-right: 1px;
+  width: 100%;
+  background-color: #e6e6e6;
+}
+.heading {
+  text-align: center;
+}
+.lastRow {
+  margin: 0 0 10px;
+  font-size: small;
+}
+.page-header {
+  color: #bf80ff;
+  font-size: 20px;
+  text-shadow: 1px 1px #000;
+}
+.page-header strong {
+  font-family: 'Finger Paint', monospace;
+}
+span.stars, span.stars span {
+    display: inline-block;
+    background: url('../images/stars.png') 0 -16px repeat-x;
+    width: 160px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+.text-content {
+  min-width: 70%;
+}
+#plot {
+  font-style: italic;
+}
+#movieTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+#successAlert {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: none;
+}
+#myEmptyJumboTron {
+  margin-top: 50px;
+}
+.img-holder {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+#addFormPoster {
+  width: 300px;
+}
+#uploadTrigger {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  opacity: 0.6;
+}
+#poster {
+    width: 300px;
+    height: 443px;
+    padding:1px;
+    border:1px solid #021a40;
+    background-color:#e6f2ff;
+}
+.error-message {
+  color: red;
+  font-size: 15px;
+  font-weight: 400;
+  display: none;
+}
+.error-bg {
+  color: inherit;
+  background-color: #eee;
+}
+
+/************* Login Modal ****************/
+
+.login .modal-dialog{
+    width: 350px;
+}
+.login .modal-footer{
+    border-top: 0;
+    margin-top: 0px;
+    padding: 10px 20px 20px;
+}
+.login .modal-header {
+    border: 0 none;
+    padding: 15px 15px 15px;
+/*     padding: 11px 15px; */
+}
+.login .modal-body{
+/*     background-color: #eeeeee; */
+}
+.login .division {
+    float: none;
+    margin: 0 auto 18px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.login .division .line {
+    border-top: 1px solid #DFDFDF;
+    position: absolute;
+    top: 10px;
+    width: 34%;
+}
+.login .division .line.l {
+    left: 0;
+}
+.login .division .line.r {
+    right: 0;
+}
+.login .division span {
+    color: #424242;
+    font-size: 17px;
+}
+.login .box .social {
+    float: none;
+    margin: 0 auto 30px;
+    text-align: center;
+    position: relative;
+}
+.login .box .social .caption {
+  display: none;
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: red;
+    padding: 10px;
+    font-size: 30px;
+    font-family: monospace;
+    font-weight: bolder;
+    z-index: 500;
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+.login .box .social:hover {
+  background-color: lightgrey;
+  opacity: 0.6;
+}
+
+.login .box .social:hover .caption {
+  display: block;
+  opacity: 1.0;
+  text-shadow: 2px 2px #000;
+  cursor: not-allowed;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.login .social .circle{
+    background-color: #EEEEEE;
+    color: #FFFFFF;
+    border-radius: 100px;
+    display: inline-block;
+    margin: 0 17px;
+    padding: 15px;
+}
+.login .social .circle .fa{
+    font-size: 16px;
+}
+.login .social .facebook{
+    background-color: #455CA8;
+    color: #FFFFFF;
+}
+.login .social .google{
+    background-color: #F74933;
+}
+.login .social .github{
+    background-color: #403A3A;
+}
+.login .facebook:hover{
+    background-color: #6E83CD;
+}
+.login .google:hover{
+    background-color: #FF7566;
+}
+.login .github:hover{
+    background-color: #4D4D4d;;
+}
+.login .forgot {
+    color: #797979;
+    margin-left: 0;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+.login .btn-login, .registerBox .btn-register{
+    /*background-color: #00BBFF;*/
+    border-color: #00BBFF;
+    border-width: 0;
+    color: #FFFFFF;
+    display: block;
+    margin: 0 auto;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.login .btn-login:hover, .registerBox .btn-register:hover{
+    /*background-color: #00A4E4;*/
+    color: #FFFFFF;
+}
+.login .form-control{
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.09);
+    box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
+    color: #FFFFFF;
+}
+.login .form-control:hover{
+    background-color: rgba(0,0,0,.16);
+}
+.login .form-control:focus{
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
+    background-color: rgba(0,0,0,0.23);
+    color: #FFFFFF;
+}
+.login .box .form input[type="text"], .login .box .form input[type="password"] {
+    border-radius: 3px;
+    border: none;
+    color: #333333;
+    font-size: 16px;
+    height: 46px;
+    margin-bottom: 5px;
+    padding: 13px 12px;
+    width: 100%;
+}
+.registerBox {
+  display : none;
+}
+
+/************* Media Queries *************/
+@media (min-width : 0px) and (max-width: 480px) {
+  body {
+    padding-top: 100px;
+  }
+  .page-header {
+    font-size: 15px;
+  }
+  .button-text {
+    display: none;
+  }
+  .button-icons {
+    display: inline;
+  }
+  .crud-group {
+    padding: 2px;
+  }
+  #poster {
+      max-width: 260px;
+      max-height: 358px;
+      padding:1px;
+      border:1px solid #021a40;
+      background-color:#e6f2ff;
+  }
+  /************ Login Modal **********************/
+  .login .modal-dialog{
+        width: 100%;
+    }
+}
+
+.big-login, .big-register{
+    background-color: #00bbff;
+    color: #FFFFFF;
+    border-radius: 7px;
+    border-width: 2px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 200;
+    padding: 16px 60px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+.big-login:hover{
+    background-color: #00A4E4;
+    color: #FFFFFF;
+}
+.big-register{
+    background-color: rgba(0,0,0,.0);
+    color: #00bbff;
+    border-color: #00bbff;
+}
+.big-register:hover{
+    border-color: #00A4E4;
+    color:  #00A4E4;
+}
+}
+@media (min-width : 481px) and (max-width: 640px) {
+  .button-text {
+    display: none;
+  }
+  .page-header {
+    font-size: 18px;
+  }
+  .button-icons {
+    display: inline;
+  }
+  .crud-group {
+    padding: 2px;
+  }
+  #poster {
+      min-width: 260px;
+      min-height: 358px;
+      padding:1px;
+      border:1px solid #021a40;
+      background-color:#e6f2ff;
+  }
+}
+@media (min-width : 641px) and (max-width: 767px) {
+  .button-text {
+    display: none;
+  }
+  .button-icons {
+    display: inline;
+  }
+  .crud-group {
+    padding: 2px;
+  }
+  #poster {
+      min-width: 300px;
+      min-height: 443px;
+      padding:1px;
+      border:1px solid #021a40;
+      background-color:#e6f2ff;
+  }
+}
+@media (min-width : 768px) {
+  .button-text {
+    display: inline;
+  }
+  .button-icons {
+    display: none;
+  }
+}
