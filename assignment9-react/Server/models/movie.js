@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
-var config = require('../config');
+var config = require('../config/config');
 var Schema = mongoose.Schema;
 
 

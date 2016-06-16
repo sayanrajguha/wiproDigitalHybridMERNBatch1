@@ -1,18 +1,19 @@
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var passport = require('passport');
 var routes = require('./api/routes/index/index');
 var movies = require('./api/routes/movies/movies');
-var config = require('./config');
+var users = require('./api/routes/users/users');
+var config = require('./config/config');
 var app = express();
 
 var port = process.env.PORT || 8080,
-publicDir = '../Client/public',
+publicDir = '../Client/dist',
 fs = require('fs');
 // view engine setup
 app.set('views', publicDir);
@@ -20,18 +21,22 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(publicDir + '/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(publicDir));
 
+app.use(passport.initialize());
+
 mongoose.connect(config.mongoDbUrl);
+
+require('./config/passport')(passport);
 
 app.use('/', routes);
 app.use('/api/movies', movies);
-
+app.use('/api/users', users);
 
 
 // app.post('/uploadImage', function(req,res) {

@@ -3,7 +3,7 @@ var imdbObj = require('node-movie');
 var omdb = require('omdb');
 var fs = require('fs');
 var Movie = require('../../../models/movie');
-var config = require('../../../config');
+var config = require('../../../config/config');
 var router = express.Router();
 var response = {};
 
