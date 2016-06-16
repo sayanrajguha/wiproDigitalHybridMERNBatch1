@@ -1,0 +1,379 @@
+/************************
+Custom CSS Stylesheet
+Author : Sayanraj Guha
+fileName : style.css
+All rights reserved.
+************************/
+body {
+    padding-top: 50px;
+}
+#main {
+  padding-top: 30px;
+}
+.movieList {
+  margin-top: 50px;
+  padding: 10px;
+
+}
+.movieItem {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: black;
+  text-align: left;
+  border-radius: 5px;
+  background-color: #e6e6ff;
+  /* shadow */
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,1);
+-moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,1);
+box-shadow: 0px 0px 15px 1px rgba(0,0,0,1);
+}
+#posterImage {
+  height: 400px;
+  width: 300px;
+  margin-top: 36px;
+}
+
+.editItem {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.editButtons {
+  padding: 5px;
+  margin: 5px;
+}
+.glyphicon-trash, .glyphicon-pencil {
+  font-size: 25px;
+}
+#editTrigger {
+  padding-bottom: 2px;
+  border: 2px;
+  padding-top: 14px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-style: dashed;
+}
+.navbar-nav li:hover{
+  background-color: #eee;
+}
+#selectMovie, .nav-links {
+  cursor: pointer;
+}
+.noMovieAlert,.noMovieFoundAlert {
+  margin-top: 10px;
+}
+
+.deleteTrigger:hover, #editTrigger:hover {
+  cursor: pointer;
+}
+/************* Contact Form ***************/
+.form-box {
+	padding-top: 40px;
+}
+
+.form-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: #444;
+	background: rgba(0, 0, 0, 0.35);
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+.form-top-left {
+	float: left;
+	width: 75%;
+	padding-top: 25px;
+}
+
+.form-top-left h3 { margin-top: 0; color: #fff; }
+.form-top-left p { opacity: 0.8; color: #fff; }
+
+.form-top-right {
+	float: left;
+	width: 25%;
+	padding-top: 5px;
+	font-size: 66px;
+	color: #fff;
+	line-height: 100px;
+	text-align: right;
+	opacity: 0.3;
+}
+
+.form-bottom {
+	padding: 25px 25px 30px 25px;
+	background: #444;
+	background: rgba(0, 0, 0, 0.3);
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.form-bottom form textarea {
+	height: 100px;
+}
+
+.form-bottom form .input-error {
+	border-color: #19b9e7;
+}
+
+.form-bottom p { opacity: 0.8; color: #fff; }
+
+span.stars, span.stars span {
+    display: inline-block;
+    background: url('/images/stars.png') 0 -16px repeat-x;
+    width: 160px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+/************ cover page ****************/
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
+}
+
+.full {
+  background: url('/images/movie-cover-large.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 500px;
+  background-color: transparent;
+  /*height: 100%; */
+  /*min-height: 100%;*/
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+.box {
+  margin-bottom: 300px;
+  -webkit-box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  -moz-box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  text-shadow: -1px 0px 9px rgba(238, 255, 5, 0.92);
+}
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+
+}
+/************ Login **************/
+.register-footer {
+  display: none;
+}
+.login {
+    width: 350px;
+    padding: 20px;
+    margin: auto;
+}
+.login .lbox {
+  padding: 20px;
+  background-color: rgba(213, 170, 128, 0.4);
+  -webkit-box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  -moz-box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  box-shadow: -1px 0px 13px 3px rgba(252,211,252,0.62);
+  text-shadow: -1px 0px 9px rgba(238, 255, 5, 0.92);
+}
+.login .division {
+    float: none;
+    margin: 0 auto 18px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.login .division .line {
+    border-top: 1px solid #DFDFDF;
+    position: absolute;
+    top: 10px;
+    width: 34%;
+}
+.login .division .line.l {
+    left: 0;
+}
+.login .division .line.r {
+    right: 0;
+}
+.login .division span {
+    color: #a7a5a5;
+    font-size: 17px;
+}
+.login .lbox .social {
+    float: none;
+    margin: 0 auto 30px;
+    text-align: center;
+    position: relative;
+}
+.login .lbox .social .caption {
+  display: none;
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: bolder;
+    z-index: 500;
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+.login .lbox .social:hover {
+  background-color: lightgrey;
+  opacity: 0.6;
+}
+
+.login .lbox .social:hover .caption {
+  display: block;
+  opacity: 1.0;
+  text-shadow: 2px 2px #000;
+  cursor: not-allowed;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.login .social .circle{
+    background-color: #EEEEEE;
+    color: #FFFFFF;
+    border-radius: 100px;
+    display: inline-block;
+    margin: 0 17px;
+    padding: 15px;
+}
+.login .social .circle .fa{
+    font-size: 16px;
+}
+.login .social .facebook{
+    background-color: #455CA8;
+    color: #FFFFFF;
+}
+.login .social .google{
+    background-color: #F74933;
+}
+.login .social .github{
+    background-color: #403A3A;
+}
+.login .facebook:hover{
+    background-color: #6E83CD;
+}
+.login .google:hover{
+    background-color: #FF7566;
+}
+.login .github:hover{
+    background-color: #4D4D4d;
+}
+.login .forgot {
+    color: #797979;
+    margin-left: 0;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
+.login .btn-login, .registerBox .btn-register{
+    /*background-color: #00BBFF;*/
+    border-color: #00BBFF;
+    border-width: 0;
+    color: #FFFFFF;
+    display: block;
+    margin: 0 auto;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.login .btn-login:hover, .registerBox .btn-register:hover{
+    /*background-color: #00A4E4;*/
+    color: #FFFFFF;
+}
+.login .form-control{
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.09);
+    box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
+    color: #FFFFFF;
+}
+.login .form-control:hover{
+    background-color: rgba(0,0,0,.16);
+}
+.login .form-control:focus{
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
+    background-color: rgba(0,0,0,0.23);
+    color: #FFFFFF;
+}
+.login .lbox .form input[type="text"], .login .lbox .form input[type="password"] {
+    border-radius: 3px;
+    border: none;
+    color: #a7a5a5;
+    font-size: 16px;
+    height: 46px;
+    margin-bottom: 5px;
+    padding: 13px 12px;
+    width: 100%;
+}
+.registerBox {
+  display : none;
+}
