@@ -11,7 +11,7 @@ var BlogSchema = new Schema({
   comments : [Comment],
   date : {
             type : Date,
-            default : Date.now
+            default : Date.now()
   },
   hidden : Boolean,
   meta : {
@@ -32,11 +32,15 @@ module.exports.createBlogPost = function(newBlogPost, callback) {
   newBlogPost.save(callback);
 }
 
-module.exports.getAllBlogPosts = function(callback) {
-  Blog.paginate({},{page : 1, limit : config.defaultPageLimit}, callback);
+module.exports.getAllBlogPosts = function(page, callback) {
+  Blog.paginate({},{page : page, sort : {date : -1}, limit : config.pageLimit}, callback);
 }
 
-module.exports.updateBlogPost = function(blogID,newBlogContent,callback) {
+module.exports.getBlogsByUser = function(username, page, callback) {
+  Blog.paginate({author : username},{page : page, sort : {date : -1}, limit : config.pageLimit}, callback);
+}
+
+module.exports.updateBlogPost = function(blogID,newBlogPost,callback) {
   Blog.findById(blogID, function(err,blog) {
     if(err) throw err;
     console.log('blog with id found');
@@ -53,8 +57,8 @@ module.exports.updateBlogPost = function(blogID,newBlogContent,callback) {
   });
 }
 
-module.exports.deleteBlogPosts = function(postIDs,callback) {
-  Blog.remove({ _id: { $in: postIDs } },callback);
+module.exports.deleteBlogPosts = function(postID,callback) {
+  Blog.remove({ _id : postID },callback);
 }
 
 module.exports.getBlogById = function(blogID, callback) {

@@ -211,6 +211,7 @@ router.route('/login')
             };
           }
 
+          console.log('Login processing for user : ' + user.username);
           res.json(response);
         });
       }

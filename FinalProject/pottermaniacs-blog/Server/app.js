@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var index = require('./api/routes/index/index');
-var movies = require('./api/routes/movies/movies');
+var blog = require('./api/routes/blog/blog');
 var users = require('./api/routes/users/users');
 var config = require('./config/config');
 var app = express();
@@ -35,7 +35,7 @@ mongoose.connect(config.mongoDbUrl);
 require('./config/passport')(passport);
 
 app.use('/', index);
-// app.use('/api/movies', movies);
+app.use('/api/blog', blog);
 app.use('/api/users', users);
 
 
