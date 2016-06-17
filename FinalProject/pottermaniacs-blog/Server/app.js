@@ -36,7 +36,7 @@ require('./config/passport')(passport);
 
 app.use('/', index);
 // app.use('/api/movies', movies);
-// app.use('/api/users', users);
+app.use('/api/users', users);
 
 
 // app.post('/uploadImage', function(req,res) {
