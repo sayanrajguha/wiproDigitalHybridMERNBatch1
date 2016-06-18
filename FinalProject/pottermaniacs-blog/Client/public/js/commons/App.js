@@ -10,6 +10,7 @@ var App = React.createClass( {
       <Navbar />
       <Header />
       {this.props.children}
+      <hr />
       <Footer />
       </div>
     )

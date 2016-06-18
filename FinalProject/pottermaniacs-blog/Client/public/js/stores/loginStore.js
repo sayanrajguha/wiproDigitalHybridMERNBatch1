@@ -3,7 +3,7 @@ var actions = require('../actions/loginAction');
 
 var store = Reflux.createStore({
   init : function() {
-    console.log('store initializing');
+    console.log('login store initializing');
   },
   listenables : actions,
   data : {

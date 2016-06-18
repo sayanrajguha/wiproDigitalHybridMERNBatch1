@@ -36,7 +36,11 @@ var Footer = React.createClass({
                               </a>
                           </li>
                       </ul>
-                      <p className="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                      <p className="copyright text-muted">Copyright &copy; <a href='mailto:sayanrajguha@gmail.com'>sayanrajguha@gmail.com</a>
+                      &emsp;
+                       All rights reserved.
+                      </p>
+                      <p className="copyright text-muted"> Theme : Clean Blog Theme by <a href='http://startbootstrap.com'>Start Bootstrap</a></p>
                   </div>
               </div>
           </div>

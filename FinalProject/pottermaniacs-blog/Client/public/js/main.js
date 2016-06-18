@@ -6,6 +6,7 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var browserHistory = ReactRouter.browserHistory;
 var Home = require('./pages/Home/Home');
+var Contact = require('./pages/Contact/Contact');
 var App = require('./commons/App');
 
 // var AuthenticationHandler = function(nextState, replace) {
@@ -17,13 +18,14 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 1');
+console.log('updated 17');
 
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
       <Route path="home" component={Home} />
+      <Route path="contact" component={Contact} />
     </Route>
   </Router>
   ,
