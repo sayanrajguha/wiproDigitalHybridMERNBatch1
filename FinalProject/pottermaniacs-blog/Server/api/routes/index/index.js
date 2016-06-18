@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index.html');
+  console.log('rendering check.html');
+  res.render('check.html');
   //res.json({message : 'App running fine. Default root served...'});
 });
+
 
 router.get('/logout', function(req,res) {
   console.log('Logout GET route invoked');

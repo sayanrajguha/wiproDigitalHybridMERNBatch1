@@ -32,5 +32,5 @@ gulp.task('copy',function(){
 });
 
 gulp.task('default',['browserify','copy'],function(){
-    return gulp.watch('public/**/*.*',['browserify','copy']);
+    //return gulp.watch('public/**/*.*',['browserify','copy']);
 });
