@@ -1,6 +1,5 @@
 var React = require('react');
 var Navbar = require('./Navbar');
-var Header = require('./Header');
 var Footer = require('./Footer');
 
 var App = React.createClass( {
@@ -8,7 +7,6 @@ var App = React.createClass( {
     return (
       <div>
       <Navbar />
-      <Header />
       {this.props.children}
       <hr />
       <Footer />

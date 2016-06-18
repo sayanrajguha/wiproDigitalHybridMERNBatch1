@@ -92,9 +92,27 @@ router.route('/')
 
 router.route('/action/:blogID')
 
-  // .get(function(req,res) {    //Like - Unlike blog post
-  //
-  // })
+  .get(function(req,res) {    //Like - Unlike blog post
+    Blog.findById(req.params.blogID, function(err,blog) {
+      if(err) {
+        console.log(err);
+        response = {
+            statusCode : 500,
+            message : 'Internal Server Error',
+            error : err
+        };
+      } else if(blog && blog.hidden == false) {
+        response = blog;
+      } else if(blog == null || blog.hidden == true) {
+        response = {
+          statusCode : 400,
+          message : 'Blog not found.',
+          error : 'BLOG-DOES-NOT-EXIST'
+        };
+      }
+      res.json(response);
+    });
+  })
 
   .post(passport.authenticate('jwt', {session : false}), function(req,res) {   // user's Comment on the blog
     Blog.findById(req.params.blogID, function(err,blog) {

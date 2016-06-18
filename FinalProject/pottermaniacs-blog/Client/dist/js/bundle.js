@@ -26352,7 +26352,6 @@ module.exports = actions;
 },{"reflux":243}],249:[function(require,module,exports){
 var React = require('react');
 var Navbar = require('./Navbar');
-var Header = require('./Header');
 var Footer = require('./Footer');
 
 var App = React.createClass( {displayName: "App",
@@ -26360,7 +26359,6 @@ var App = React.createClass( {displayName: "App",
     return (
       React.createElement("div", null, 
       React.createElement(Navbar, null), 
-      React.createElement(Header, null), 
       this.props.children, 
       React.createElement("hr", null), 
       React.createElement(Footer, null)
@@ -26369,7 +26367,7 @@ var App = React.createClass( {displayName: "App",
   }
 });
 module.exports = App;
-},{"./Footer":250,"./Header":251,"./Navbar":252,"react":227}],250:[function(require,module,exports){
+},{"./Footer":250,"./Navbar":251,"react":227}],250:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
@@ -26428,39 +26426,6 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 
-var Header = React.createClass({displayName: "Header",
-  render : function() {
-    return (
-      React.createElement("header", {className: "intro-header", id: "header-container"}, 
-          React.createElement("div", {className: "container"}, 
-              React.createElement("div", {className: "row"}, 
-                  React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
-                      React.createElement("div", {className: "site-heading"}, 
-                          React.createElement("h1", null, "Blog on Potterheads!"), 
-                          React.createElement("hr", {className: "small"}), 
-                          React.createElement("span", {className: "subheading"}, 
-                          React.createElement("blockquote", null, 
-                          "Words are, in my not-so-humble opinion, our most inexhaustible source of magic." + ' ' +
-                          "Capable of both inflicting injury, and remedying it.", 
-                          React.createElement("cite", null, "Albus Dumbledore, Harry Potter and the Deathly Hallows")
-                          )
-                          )
-                      )
-                  )
-              )
-          )
-      )
-    );
-  }
-});
-
-module.exports = Header;
-},{"react":227,"react-router":82}],252:[function(require,module,exports){
-var React = require('react');
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Link = ReactRouter.Link;
-
 
 var Navbar = React.createClass({displayName: "Navbar",
   render : function() {
@@ -26502,7 +26467,7 @@ var Navbar = React.createClass({displayName: "Navbar",
 });
 
 module.exports = Navbar;
-},{"react":227,"react-router":82}],253:[function(require,module,exports){
+},{"react":227,"react-router":82}],252:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom');
@@ -26523,7 +26488,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 17');
+console.log('updated 30');
 
 ReactDOM.render(
   React.createElement(Router, {history: browserHistory}, 
@@ -26536,63 +26501,87 @@ ReactDOM.render(
   ,
   document.getElementById('content')
 );
-},{"./commons/App":249,"./pages/Contact/Contact":254,"./pages/Home/Home":255,"react":227,"react-dom":52,"react-router":82}],254:[function(require,module,exports){
+},{"./commons/App":249,"./pages/Contact/Contact":253,"./pages/Home/Home":254,"react":227,"react-dom":52,"react-router":82}],253:[function(require,module,exports){
 var React = require('react');
 
-var Contact = React.createClass( {displayName: "Contact",
+
+var Header = React.createClass({displayName: "Header",
   render : function() {
     return (
-      React.createElement("div", {className: "container"}, 
-        React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
-                React.createElement("p", null, "Want to get in touch with me?"), 
-                React.createElement("p", null, "Fill out the form below to send me a message and I will try to get back to you ASAP!"), 
-                React.createElement("form", {name: "sentMessage", id: "contactForm", novalidate: true}, 
-                    React.createElement("div", {className: "row control-group"}, 
-                        React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
-                            React.createElement("label", null, "Name"), 
-                            React.createElement("input", {type: "text", className: "form-control", placeholder: "Name", id: "name", required: true, "data-validation-required-message": "Please enter your name."}), 
-                            React.createElement("p", {className: "help-block text-danger"})
-                        )
-                    ), 
-                    React.createElement("div", {className: "row control-group"}, 
-                        React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
-                            React.createElement("label", null, "Email Address"), 
-                            React.createElement("input", {type: "email", className: "form-control", placeholder: "Email Address", id: "email", required: true, "data-validation-required-message": "Please enter your email address."}), 
-                            React.createElement("p", {className: "help-block text-danger"})
-                        )
-                    ), 
-                    React.createElement("div", {className: "row control-group"}, 
-                        React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
-                            React.createElement("label", null, "Phone Number"), 
-                            React.createElement("input", {type: "tel", className: "form-control", placeholder: "Phone Number", id: "phone", required: true, "data-validation-required-message": "Please enter your phone number."}), 
-                            React.createElement("p", {className: "help-block text-danger"})
-                        )
-                    ), 
-                    React.createElement("div", {className: "row control-group"}, 
-                        React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
-                            React.createElement("label", null, "Message"), 
-                            React.createElement("textarea", {rows: "5", className: "form-control", placeholder: "Message", id: "message", required: true, "data-validation-required-message": "Please enter a message."}), 
-                            React.createElement("p", {className: "help-block text-danger"})
-                        )
-                    ), 
-                    React.createElement("br", null), 
-                    React.createElement("div", {id: "success"}), 
-                    React.createElement("div", {className: "row"}, 
-                        React.createElement("div", {className: "form-group col-xs-12"}, 
-                            React.createElement("button", {type: "submit", className: "btn btn-default"}, "Send")
-                        )
+      React.createElement("header", {className: "intro-header", id: "header-container", style: {backgroundImage: 'url(../images/home-bg.jpg)'}}, 
+          React.createElement("div", {className: "container"}, 
+            React.createElement("div", {className: "row"}, 
+                React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
+                    React.createElement("div", {className: "page-heading"}, 
+                        React.createElement("h1", null, "Contact Me"), 
+                        React.createElement("hr", {className: "small"}), 
+                        React.createElement("span", {className: "subheading"}, "Have questions? I have answers (maybe).")
                     )
                 )
             )
         )
+      )
+    );
+  }
+});
+
+var Contact = React.createClass( {displayName: "Contact",
+  render : function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement(Header, null), 
+        React.createElement("div", {className: "container"}, 
+          React.createElement("div", {className: "row"}, 
+              React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
+                  React.createElement("p", null, "Want to get in touch with me?"), 
+                  React.createElement("p", null, "Fill out the form below to send me a message and I will try to get back to you ASAP!"), 
+                  React.createElement("form", {name: "sentMessage", id: "contactForm", novalidate: true}, 
+                      React.createElement("div", {className: "row control-group"}, 
+                          React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                              React.createElement("label", null, "Name"), 
+                              React.createElement("input", {type: "text", className: "form-control", placeholder: "Name", id: "name", required: true, "data-validation-required-message": "Please enter your name."}), 
+                              React.createElement("p", {className: "help-block text-danger"})
+                          )
+                      ), 
+                      React.createElement("div", {className: "row control-group"}, 
+                          React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                              React.createElement("label", null, "Email Address"), 
+                              React.createElement("input", {type: "email", className: "form-control", placeholder: "Email Address", id: "email", required: true, "data-validation-required-message": "Please enter your email address."}), 
+                              React.createElement("p", {className: "help-block text-danger"})
+                          )
+                      ), 
+                      React.createElement("div", {className: "row control-group"}, 
+                          React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                              React.createElement("label", null, "Phone Number"), 
+                              React.createElement("input", {type: "tel", className: "form-control", placeholder: "Phone Number", id: "phone", required: true, "data-validation-required-message": "Please enter your phone number."}), 
+                              React.createElement("p", {className: "help-block text-danger"})
+                          )
+                      ), 
+                      React.createElement("div", {className: "row control-group"}, 
+                          React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                              React.createElement("label", null, "Message"), 
+                              React.createElement("textarea", {rows: "5", className: "form-control", placeholder: "Message", id: "message", required: true, "data-validation-required-message": "Please enter a message."}), 
+                              React.createElement("p", {className: "help-block text-danger"})
+                          )
+                      ), 
+                      React.createElement("br", null), 
+                      React.createElement("div", {id: "success"}), 
+                      React.createElement("div", {className: "row"}, 
+                          React.createElement("div", {className: "form-group col-xs-12"}, 
+                              React.createElement("button", {type: "submit", className: "btn btn-default"}, "Send")
+                          )
+                      )
+                  )
+              )
+          )
+      )
     )
     );
   }
 });
 
 module.exports = Contact;
-},{"react":227}],255:[function(require,module,exports){
+},{"react":227}],254:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Reflux = require('reflux');
@@ -26601,25 +26590,86 @@ var Link = ReactRouter.Link;
 var dataStore = require('../../stores/dataStore');
 var dataAction = require('../../actions/dataAction');
 
+var Header = React.createClass({displayName: "Header",
+  render : function() {
+    return (
+      React.createElement("header", {className: "intro-header", id: "header-container", style: {backgroundImage: 'url(../images/home-bg.jpg)'}}, 
+          React.createElement("div", {className: "container"}, 
+              React.createElement("div", {className: "row"}, 
+                  React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
+                  this.props.isShowingBlog ?
+                    [
+                      React.createElement("div", {className: "post-heading", key: this.props.blog._id}, 
+                        React.createElement("h1", null, this.props.blog.title), 
+                        React.createElement("span", {className: "meta"}, "Posted by ", React.createElement("a", {href: "javascript:void(0)"}, this.props.blog.author), " on ", this.props.blog.date)
+                    )
+                    ]
+                    :
+                    [
+                      React.createElement("div", {className: "site-heading", key: "-1"}, 
+                          React.createElement("h1", null, "Blog on Potterheads!"), 
+                          React.createElement("hr", {className: "small"}), 
+                          React.createElement("span", {className: "subheading"}, 
+                          React.createElement("blockquote", null, 
+                          "Words are, in my not-so-humble opinion, our most inexhaustible source of magic." + ' ' +
+                          "Capable of both inflicting injury, and remedying it.", 
+                          React.createElement("cite", null, "Albus Dumbledore, Harry Potter and the Deathly Hallows")
+                          )
+                          )
+                      )
+                    ]
+                  
+                  )
+              )
+          )
+      )
+    );
+  }
+});
+
 var Home = React.createClass({displayName: "Home",
+  restURL : {
+    getBlogByIdURL : '/api/blog/action/'
+  },
   mixins : [Reflux.listenTo(dataStore, 'onDataUpdate')],
   getInitialState : function() {
     return {
-      blogs : null,
-      totalBlogs : 0,
-      blogsPerPage : 0,
-      page : 0,
-      totalPages : 0
+      blogData : null,
+      showBlog : {
+        isShowingBlog : false,
+        blog : null
+      }
     };
   },
   onDataUpdate : function(data) {
     console.log(data);
     this.setState({
-      blogs : data.blogs,
-      totalBlogs : data.totalBlogs,
-      blogsPerPage : data.blogsPerPage,
-      page : data.page,
-      totalPages : data.totalPages
+      blogData : data
+    });
+  },
+  onShowBlog : function(blogID) {
+    $.ajax({
+      type : 'GET',
+      url : this.restURL.getBlogByIdURL + blogID,
+      dataType : 'json',
+      cache : false,
+      error : function(err) {
+        console.log('Error occurred : ' + err.message);
+        console.log(err.error);
+      }.bind(this),
+      success : function(response) {
+        if(response.hasOwnProperty('statusCode') && response.statusCode == 400) {
+          //blog not found.
+          console.log('blog not found');
+        } else {
+          this.setState({
+            showBlog : {
+              isShowingBlog : true,
+              blog : response
+            }
+          });
+        }
+      }.bind(this)
     });
   },
   loadData : function() {
@@ -26629,18 +26679,21 @@ var Home = React.createClass({displayName: "Home",
     this.loadData();
   },
   render : function() {
+    var renderObj;
+    if(this.state.showBlog.isShowingBlog) {
+      renderObj = React.createElement(FullBlogPost, {blog: this.state.showBlog.blog});
+    } else if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
+      renderObj = React.createElement(BlogList, {onShowBlog: this.onShowBlog, 
+      blogs: this.state.blogData.blogs, page: this.state.blogData.page, totalPages: this.state.blogData.totalPages});
+    } else {
+      renderObj = null;
+    }
     return (
-      React.createElement("div", {class: "container"}, 
-      this.state.blogs && this.state.totalBlogs >= 1 ?
-        React.createElement(BlogList, {blogs: this.state.blogs, page: this.state.page, totalPages: this.state.totalPages})
-        :
-        null
-        // <div className="alert alert-warning fade in noMovieAlert" role="alert">
-        //   <span className="glyphicon glyphicon-shopping-cart"></span>
-        //   {' '}
-        //   <span id="caption">You do not have any movies in your list</span>
-        // </div>
-      
+      React.createElement("div", null, 
+        React.createElement(Header, {isShowingBlog: this.state.showBlog.isShowingBlog, blog: this.state.showBlog.blog}), 
+        React.createElement("div", {className: "container"}, 
+        renderObj
+        )
       )
     );
   }
@@ -26659,7 +26712,7 @@ var BlogList = React.createClass({displayName: "BlogList",
     var i = 0;
     this.props.blogs.forEach(function(blog) {
       ++i;
-      posts.push(React.createElement(BlogPost, {blog: blog, key: blog._id}));
+      posts.push(React.createElement(MinBlogPost, {onShowBlog: this.props.onShowBlog, blog: blog, key: blog._id}));
       posts.push(React.createElement("hr", {key: i}));
     }.bind(this));
     return (
@@ -26677,16 +26730,16 @@ var BlogList = React.createClass({displayName: "BlogList",
   }
 });
 
-var BlogPost = React.createClass({displayName: "BlogPost",
+var MinBlogPost = React.createClass({displayName: "MinBlogPost",
+  showBlog : function(e) {
+    this.props.onShowBlog($(e.target).parent().attr('id'));
+  },
   render : function() {
     return (
       React.createElement("div", {className: "post-preview"}, 
-          React.createElement("a", {href: "post.html"}, 
+          React.createElement("a", {id: this.props.blog._id, onClick: this.showBlog}, 
               React.createElement("h2", {className: "post-title"}, 
                   this.props.blog.title
-              ), 
-              React.createElement("h3", {className: "post-subtitle"}, 
-                  this.props.blog.body && this.props.blog.body.length > 100 ? (this.props.blog.body.substring(0,100) + '...') : this.props.blog.body
               )
           ), 
           React.createElement("p", {className: "post-meta"}, "Posted by ", React.createElement("a", {href: "javascript:void(0)"}, this.props.blog.author), " on ", this.props.blog.date)
@@ -26695,8 +26748,23 @@ var BlogPost = React.createClass({displayName: "BlogPost",
   }
 });
 
+var FullBlogPost = React.createClass({displayName: "FullBlogPost",
+  render : function() {
+    return (
+      React.createElement("article", null, 
+        React.createElement("div", {className: "container"}, 
+            React.createElement("div", {className: "row"}, 
+                React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1", dangerouslySetInnerHTML: {__html: this.props.blog.body}}
+                )
+            )
+        )
+    )
+    );
+  }
+});
+
 module.exports = Home;
-},{"../../actions/dataAction":248,"../../stores/dataStore":256,"react":227,"react-router":82,"reflux":243}],256:[function(require,module,exports){
+},{"../../actions/dataAction":248,"../../stores/dataStore":255,"react":227,"react-router":82,"reflux":243}],255:[function(require,module,exports){
 var Reflux = require('reflux');
 var actions = require('../actions/dataAction');
 
@@ -26752,4 +26820,4 @@ var store = Reflux.createStore({
 });
 
 module.exports = store;
-},{"../actions/dataAction":248,"reflux":243}]},{},[253]);
+},{"../actions/dataAction":248,"reflux":243}]},{},[252]);

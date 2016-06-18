@@ -61,9 +61,6 @@ hr.small {
   font-weight: 800;
   letter-spacing: 1px;
 }
-#header-container {
-  background-image: url('../images/home-bg.jpg');
-}
 
 blockquote {
 font-family: Georgia, serif;
@@ -263,6 +260,7 @@ content: "\2014 \2009";
 }
 .post-preview > a:hover,
 .post-preview > a:focus {
+  cursor: pointer;
   text-decoration: none;
   color: #0085a1;
 }
