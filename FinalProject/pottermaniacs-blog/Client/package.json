@@ -9,21 +9,22 @@
   "author": "Sayanraj Guha",
   "license": "ISC",
   "devDependencies": {
-      "browserify": "*",
-      "flux": "*",
-      "gulp": "*",
-      "gulp-concat": "^2.6.0",
-      "gulp-html-replace": "^1.6.0",
-      "gulp-react": "^3.1.0",
-      "gulp-uglify": "^1.5.3",
-      "object-assign": "*",
-      "reactify": "*",
-      "vinyl-source-stream": "*"
-    },
-    "dependencies": {
-      "react": "^15.1.0",
-      "react-dom": "^15.1.0",
-      "react-router": "^2.4.1",
-      "reflux": "^0.4.1"
-    }
+    "browserify": "*",
+    "flux": "*",
+    "gulp": "*",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.6.0",
+    "gulp-react": "^3.1.0",
+    "gulp-uglify": "^1.5.3",
+    "object-assign": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*"
+  },
+  "dependencies": {
+    "moment": "^2.13.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1",
+    "reflux": "^0.4.1"
+  }
 }

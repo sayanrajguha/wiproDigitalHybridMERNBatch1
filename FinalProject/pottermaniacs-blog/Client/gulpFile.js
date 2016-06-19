@@ -23,6 +23,8 @@ gulp.task('copy',function(){
         .pipe(gulp.dest('dist/css'));
     gulp.src('public/global-scripts/*.*')
         .pipe(gulp.dest('dist/global-scripts'));
+    gulp.src('public/global-config/*.*')
+        .pipe(gulp.dest('dist/global-config'));
     gulp.src('public/fonts/*.*')
         .pipe(gulp.dest('dist/fonts'));
     gulp.src('public/images/*.*')

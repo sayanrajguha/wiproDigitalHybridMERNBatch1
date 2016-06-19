@@ -38,7 +38,7 @@ var store = Reflux.createStore({
           this.data.isRegistered = false;
           this.data.errorCode = response.error;
         } else if(response && response.hasOwnProperty('token') && response.statusCode == 200) {
-          this.data.user = response.user;
+          this.data.user = response.username;
           this.data.token = response.token;
           this.data.isRegistered = false;
           this.data.errorCode = null;

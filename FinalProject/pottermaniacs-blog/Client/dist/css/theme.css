@@ -1,9 +1,14 @@
 /*!
- * Clean Blog v1.0.0 (http://startbootstrap.com)
- * Copyright 2014 Start Bootstrap
- * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
- */
+ * Clean Blog Theme CSS by StartBootstrap => (http://startbootstrap.com)
+ * Customized for personal use
+ * Author : Sayanraj Guha
+*/
 
+/* global hide register box */
+.registerBox {
+  display: none;
+}
+/***************************/
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
@@ -35,6 +40,16 @@ a:focus {
 a img:hover,
 a img:focus {
   cursor: zoom-in;
+}
+.subheading a {
+  cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px 22px rgba(255, 235, 59, 0.77);
+}
+.subheading a:hover {
+  text-shadow: 0 0;
+  font-weight: bolder;
+  color: #cddc39;
 }
 blockquote {
   color: #808080;
@@ -104,8 +119,10 @@ content: "\2014 \2009";
   color: rgb(121, 85, 72) !important;
 }
 .site-heading h1 {
+  color : rgb(121, 85, 72) !important;
   text-shadow: 4px 4px 6px rgba(255, 255, 255, 1);
 }
+
 @media only screen and (min-width: 768px) {
   .navbar-custom {
     background: transparent;
@@ -191,7 +208,7 @@ content: "\2014 \2009";
 .intro-header .post-heading,
 .intro-header .page-heading {
   padding: 100px 0 50px;
-  color: white;
+  color: white !important;
 }
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading,

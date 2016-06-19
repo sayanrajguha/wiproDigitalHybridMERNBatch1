@@ -1001,6 +1001,24 @@ $(function() {
     });
 });
 
+//Switching between login and register boxes
+function showRegisterForm(){
+    $('.loginBox').fadeOut('fast',function(){
+        $('.registerBox').fadeIn('fast');
+        $('.login-header').fadeOut('fast',function(){
+            $('.register-header').fadeIn('fast');
+        });
+    });
+}
+function showLoginForm(){
+    $('.registerBox').fadeOut('fast',function(){
+        $('.loginBox').fadeIn('fast');
+        $('.register-header').fadeOut('fast',function(){
+            $('.login-header').fadeIn('fast');
+        });
+
+    });
+}
 // Navigation Scripts to Show Header on Scroll-Up
 jQuery(document).ready(function($) {
     var MQL = 1170;
@@ -1020,7 +1038,7 @@ jQuery(document).ready(function($) {
                       $('.navbar-custom').addClass('is-visible is-fixed');
                     }
                     if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
-                        
+
                     } else {
                         $('.navbar-custom').removeClass('is-visible is-fixed');
                     }

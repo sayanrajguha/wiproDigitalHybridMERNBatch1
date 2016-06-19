@@ -1,10 +1,12 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Reflux = require('reflux');
+var moment = require('moment');
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
 var dataStore = require('../../stores/dataStore');
 var dataAction = require('../../actions/dataAction');
+var config = require('../../../global-config/global.config');
 
 var Header = React.createClass({
   render : function() {
@@ -15,9 +17,9 @@ var Header = React.createClass({
                   <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                   {this.props.isShowingBlog ?
                     [
-                      <div className="post-heading" key={this.props.blog._id}>
+                    <div className="post-heading" key={this.props.blog._id}>
                         <h1>{this.props.blog.title}</h1>
-                        <span className="meta">Posted by <a href="javascript:void(0)">{this.props.blog.author}</a> on {this.props.blog.date}</span>
+                        <span className="meta">Posted by <a href="javascript:void(0)">{this.props.blog.author}</a> on {moment(this.props.blog.date).format(config.dateFormat)}</span>
                     </div>
                     ]
                     :
@@ -158,7 +160,7 @@ var MinBlogPost = React.createClass({
                   {this.props.blog.title}
               </h2>
           </a>
-          <p className="post-meta">Posted by <a href="javascript:void(0)">{this.props.blog.author}</a> on {this.props.blog.date}</p>
+          <p className="post-meta">Posted by <a href="javascript:void(0)">{this.props.blog.author}</a> on {moment(this.props.blog.date).format(config.dateFormat)}</p>
       </div>
     );
   }

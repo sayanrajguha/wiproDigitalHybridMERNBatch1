@@ -7,6 +7,42 @@ var browserHistory = ReactRouter.browserHistory;
 var actions = require('../../actions/loginAction');
 var store = require('../../stores/loginStore');
 
+var Header = React.createClass({
+  toggle : function(e) {
+    $('.success p').html('');
+    if(e.target.text == 'Sign Up') {
+      showRegisterForm();
+    } else {
+      showLoginForm();
+    }
+  },
+  render : function() {
+    return (
+      <header className="intro-header" id="header-container" style={{backgroundImage: 'url(../images/home-bg.jpg)'}}>
+          <div className="container">
+              <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                      <div className="site-heading" key='-1'>
+                          <h1>Your dormitory awaits you...</h1>
+                          <hr className="small" />
+                          <span className="subheading">
+                            Your account
+                          </span>
+                          <span className="subheading login-header">
+                            New here? <a onClick={this.toggle}>Sign Up</a> and be a part of this magical world!
+                          </span>
+                          <span className="subheading register-header" style={{display : 'none'}}>
+                            Already a member of this wizarding world? <a onClick={this.toggle}>Log in</a>!
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+    );
+  }
+});
+
 var Login = React.createClass({
   getInitialState : function() {
     return {
@@ -18,13 +54,14 @@ var Login = React.createClass({
   onStoreUpdate : function(data) {
     console.log('inside onStoreUpdate.');
     console.log(data);
-    var errorView = $('#login-section #error');
+    var errorView = $('.success p');
+    console.log(errorView);
     if(data.hasOwnProperty('isRegistered') && data.isRegistered) {
       this.setState({
         isRegistered : true,
         isLoggedIn : false
       });
-      console.log('switching login form');
+      console.log('switching to login form');
       showLoginForm();
     } else if(data.hasOwnProperty('errorCode') && data.errorCode != null) {
       var message = '';
@@ -47,7 +84,7 @@ var Login = React.createClass({
         default: message = data.errorCode;
       }
       errorView.html(message);
-      console.log('error present. setting both false');
+      console.log('2 error present. setting both false');
       this.setState({
         isRegistered : false,
         isLoggedIn : false
@@ -60,7 +97,8 @@ var Login = React.createClass({
       });
       window.localStorage.setItem('user',data.user);
       window.localStorage.setItem('token',data.token);
-      browserHistory.push('/dashboard');
+      //browserHistory.push('/dashboard');
+      alert('Logged in');
     }
     if(data.hasOwnProperty('errorCode') && data.errorCode == null) {
       errorView.html('');
@@ -68,15 +106,15 @@ var Login = React.createClass({
   },
   doLogin : function(e) {
     e.preventDefault();
+    e.stopPropagation();
     console.log('DoLogin called.');
     var data = $('#loginForm').serialize();
-    e.stopPropagation();
     actions.login(data);
     return false;
   },
   doRegister : function(e) {
     e.preventDefault();
-    actions.register($('#registrationForm').serialize());
+    actions.register($('#registerForm').serialize());
     console.log('register data sent');
     return false;
   },
@@ -85,78 +123,128 @@ var Login = React.createClass({
     resetForm();
   },
   clear : function() {
-    this.refs.registerEmail.value='';
-    this.refs.registerFName.value='';
-    this.refs.registerLName.value='';
-    this.refs.registerPassword.value='';
-    this.refs.registerConfPassword.value='';
+    // this.refs.registerEmail.value='';
+    // this.refs.registerFName.value='';
+    // this.refs.registerLName.value='';
+    // this.refs.registerPassword.value='';
+    // this.refs.registerConfPassword.value='';
+  },
+  componentDidMount : function() {
+    $('#dob').datepicker({
+      dateFormat : 'yy-mm-dd',
+      changeYear : true,
+      yearRange : '-100:+0'
+    });
   },
   render : function() {
     return (
-      <div className="login">
-      <div className="lbox" id="login-section">
-           <div className="content">
-              <div className="social">
-                  <a className="circle github" href="/auth/github">
-                      <i className="fa fa-github fa-fw"></i>
-                  </a>
-                  <a id="google_login" className="circle google" href="">
-                      <i className="fa fa-google-plus fa-fw"></i>
-                  </a>
-                  <a id="facebook_login" className="circle facebook" href="">
-                      <i className="fa fa-facebook fa-fw"></i>
-                  </a>
-                  <p className="caption">
-                    Work In Progress
-                  </p>
-              </div>
-              <div className="division">
-                  <div className="line l"></div>
-                    <span>or</span>
-                  <div className="line r"></div>
-              </div>
-              <div id="error">
-              </div>
-              <div className={this.state.isRegistered ? "relogin show" : "relogin hide"}>
-                <p> Registration Successful! Please login to continue...</p>
-              </div>
-              <div className="form loginBox">
+      <div>
+        <Header />
+        <div className="container">
+          <div className="row">
+              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div className="loginBox">
                   <form id="loginForm">
-                  <input id="email" className="form-control" type="text" placeholder="Email" name="email" ref="userEmail" />
-                  <input id="password" className="form-control" type="password" placeholder="Password" name="password" ref="userPassword" />
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Username</label>
+                              <input type="text" className="form-control" autoComplete="off" placeholder="Username" id="username" name="username" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Password</label>
+                              <input type="password" className="form-control" placeholder="Password" id="password" name="password" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <br />
+                      <div className="success text-center alert-danger">
+                        <p class=""></p>
+                      </div>
+                      <div className="row">
+                          <div className="form-group col-xs-12 text-center">
+                              <button type="button" className="btn btn-default" onClick={this.doLogin}>Login</button>
+                          </div>
+                      </div>
                   </form>
-                  <div className="text-center">
-                    <input className="btn btn-success btn-login" type="button" value="Login" onClick={this.doLogin} />
-                  </div>
-              </div>
-           </div>
-      </div>
-      <div className="lbox registerBox">
-          <div className="content registerBox">
-           <div className="form">
-              <form method="post" id="registrationForm">
-              <input id="email" className="form-control" type="text" ref='registerEmail' placeholder="Email" name="email" />
-              <input id="fName" className="form-control" type="text" placeholder="First Name" ref='registerFName' name="firstName" />
-              <input id="lName" className="form-control" type="text" placeholder="Last Name" ref='registerLName' name="lastName" />
-              <input id="password" className="form-control" type="password" placeholder="Password" ref='registerPassword' name="password" />
-              <input id="password_confirmation" className="form-control" type="password" placeholder="Confirm Password" ref='registerConfPassword' name="confPassword" />
-              </form>
-              <input className="btn btn-primary btn-register" type="button" value="Create account" onClick={this.doRegister} name="Register" />
+                </div>
+                <div className="registerBox">
+                  <form id="registerForm">
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Username</label>
+                              <input type="text" className="form-control" autoComplete="off" placeholder="Username" id="username" name="username" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>First Name</label>
+                              <input type="text" className="form-control" autoComplete="off" placeholder="First Name" id="firstName" name="firstName" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Last Name</label>
+                              <input type="text" className="form-control" autoComplete="off" placeholder="Last Name" id="lastName" name="lastName" />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Email</label>
+                              <input type="email" className="form-control" autoComplete="off" placeholder="Email" id="email" name="email" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Date of Birth</label>
+                              <input type="text" className="form-control" style={{backgroundColor : 'initial'}} placeholder="Date of Birth" id="dob" name="dob" readOnly />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Contact Number</label>
+                              <input type="text" className="form-control" autoComplete="off" placeholder="Contact Number" id="contact" name="contact" />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <br />
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Password</label>
+                              <input type="password" className="form-control" placeholder="Password" id="password" name="password" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <div className="row control-group">
+                          <div className="form-group col-xs-12 floating-label-form-group controls">
+                              <label>Confirm Password</label>
+                              <input type="password" className="form-control" placeholder="Re-enter password" id="confPassword" name="confPassword" required />
+                              <p className="help-block text-danger"></p>
+                          </div>
+                      </div>
+                      <br />
+                      <div className="success text-center alert-danger">
+                        <p class=""></p>
+                      </div>
+                      <br />
+                      <div className="row">
+                          <div className="form-group col-xs-12 text-center">
+                              <button type="button" className="btn btn-default" onClick={this.doRegister}>Register</button>
+                          </div>
+                      </div>
+                  </form>
+                </div>
               </div>
           </div>
       </div>
-      <div className="lbox">
-        <div className="login-footer">
-            <span>New user? {' '}
-                 <a href="javascript:showRegisterForm()">Create an account&#33; </a>
-            </span>
-        </div>
-        <div className="register-footer">
-             <span>Already have an account? {' '}</span>
-             <a href="javascript:showLoginForm()">Login</a>
-        </div>
-      </div>
-      </div>
+    </div>
     );
   }
 });
