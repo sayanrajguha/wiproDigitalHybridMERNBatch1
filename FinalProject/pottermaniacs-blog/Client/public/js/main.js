@@ -19,7 +19,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 48');
+console.log('updated 52');
 
 ReactDOM.render(
   <Router history={browserHistory}>

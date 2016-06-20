@@ -30476,12 +30476,91 @@ module.exports = Footer;
 },{"react":228,"react-router":83}],254:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
+var Reflux = require('reflux');
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
+var actions = require('../actions/loginAction');
+var store = require('../stores/loginStore');
 
 
 var Navbar = React.createClass({displayName: "Navbar",
+  getInitialState : function() {
+    return {
+      isLoggedIn : false
+    };
+  },
+  mixins : [Reflux.listenTo(store,'onStoreUpdate')],
+  onStoreUpdate : function(data) {
+
+    if(data.hasOwnProperty('errorCode') && data.errorCode != null) {
+      this.setState({
+        isLoggedIn : false
+      });
+    } else if(data.user != null && data.token != null) {
+      this.setState({
+        isLoggedIn : true
+      });
+    }
+  },
+  logOut : function() {
+    console.log('logging out user');
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    this.setState({
+      isLoggedIn : false
+    });
+    browserHistory.push('/home');
+  },
   render : function() {
+    var menu = null;
+    if(this.state.isLoggedIn) {
+      menu = [
+        React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1", key: "1"}, 
+            React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "home"}, "My Home")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "about"}, "About")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "contact"}, "Contact")
+                ), 
+                React.createElement("li", {className: "dropdown"}, 
+                  React.createElement("a", {href: "javascript:void(0)", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false"}, 
+                    React.createElement("span", {className: "glyphicon glyphicon-user"}), 
+                    React.createElement("span", {className: "caret"})
+                  ), 
+                  React.createElement("ul", {className: "dropdown-menu"}, 
+                    React.createElement("li", null, React.createElement("a", {href: "javascript:void(0)"}, "Profile")), 
+                    React.createElement("li", {role: "separator", className: "divider"}), 
+                    React.createElement("li", null, React.createElement("a", {href: "javascript:void(0)", onClick: this.logOut}, "Logout"))
+                  )
+                )
+            )
+        )
+      ];
+    } else {
+      menu = [
+        React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1", key: "2"}, 
+            React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "home"}, "Home")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "about"}, "About")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "contact"}, "Contact")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "login"}, "Login")
+                )
+            )
+        )
+      ];
+    }
     return (
       React.createElement("nav", {className: "navbar navbar-default navbar-custom navbar-fixed-top"}, 
           React.createElement("div", {className: "container-fluid"}, 
@@ -30492,35 +30571,17 @@ var Navbar = React.createClass({displayName: "Navbar",
                       React.createElement("span", {className: "icon-bar"}), 
                       React.createElement("span", {className: "icon-bar"})
                   ), 
-                  React.createElement("a", {className: "navbar-brand", href: "index.html"}, "Pottermaniacs")
+                  React.createElement("a", {className: "navbar-brand", href: "/"}, "Pottermaniacs")
               ), 
-
-              React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
-                  React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-                      React.createElement("li", null, 
-                          React.createElement(Link, {to: "home"}, "Home")
-                      ), 
-                      React.createElement("li", null, 
-                          React.createElement(Link, {to: "about"}, "About")
-                      ), 
-                      React.createElement("li", null, 
-                          React.createElement(Link, {to: "contact"}, "Contact")
-                      ), 
-                      React.createElement("li", null, 
-                          React.createElement(Link, {to: "login"}, "Login")
-                      )
-                  )
-              )
-
+              menu
           )
-
       )
     );
   }
 });
 
 module.exports = Navbar;
-},{"react":228,"react-router":83}],255:[function(require,module,exports){
+},{"../actions/loginAction":251,"../stores/loginStore":260,"react":228,"react-router":83,"reflux":244}],255:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom');
@@ -30542,7 +30603,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 48');
+console.log('updated 52');
 
 ReactDOM.render(
   React.createElement(Router, {history: browserHistory}, 
