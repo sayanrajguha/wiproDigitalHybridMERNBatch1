@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var moment = require('moment');
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
 var dataStore = require('../../stores/dataStore');
 var dataAction = require('../../actions/dataAction');
 var config = require('../../../global-config/global.config');
@@ -90,6 +91,14 @@ var Home = React.createClass({
       }.bind(this)
     });
   },
+  processBack : function() {
+    this.setState({
+      showBlog : {
+        isShowingBlog : false,
+        blog : null
+      }
+    });
+  },
   loadData : function() {
     dataAction.load(1);
   },
@@ -99,7 +108,7 @@ var Home = React.createClass({
   render : function() {
     var renderObj;
     if(this.state.showBlog.isShowingBlog) {
-      renderObj = <FullBlogPost blog={this.state.showBlog.blog} />;
+      renderObj = <FullBlogPost back={this.processBack} blog={this.state.showBlog.blog} />;
     } else if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
       renderObj = <BlogList onShowBlog={this.onShowBlog}
       blogs={this.state.blogData.blogs} page={this.state.blogData.page} totalPages={this.state.blogData.totalPages} />;
@@ -171,6 +180,9 @@ var FullBlogPost = React.createClass({
     return (
       <article>
         <div className="container">
+            <div className="row">
+              <a onClick={this.props.back}><span className="glyphicon glyphicon-chevron-left glyphicon-links"></span></a>
+            </div>
             <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" dangerouslySetInnerHTML={{__html: this.props.blog.body}}>
                 </div>

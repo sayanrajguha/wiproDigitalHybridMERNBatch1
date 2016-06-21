@@ -97,8 +97,7 @@ var Login = React.createClass({
       });
       window.localStorage.setItem('user',data.user);
       window.localStorage.setItem('token',data.token);
-      //browserHistory.push('/dashboard');
-      alert('Logged in');
+      browserHistory.push('dashboard');
     }
     if(data.hasOwnProperty('errorCode') && data.errorCode == null) {
       errorView.html('');

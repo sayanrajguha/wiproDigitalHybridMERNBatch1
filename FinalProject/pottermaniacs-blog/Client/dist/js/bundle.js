@@ -3339,9 +3339,17 @@ var KNOWN_STATICS = {
     arity: true
 };
 
+var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
+
 module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
     if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
         var keys = Object.getOwnPropertyNames(sourceComponent);
+
+        /* istanbul ignore else */
+        if (isGetOwnPropertySymbolsAvailable) {
+            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
+        }
+
         for (var i = 0; i < keys.length; ++i) {
             if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
                 try {
@@ -30390,7 +30398,7 @@ module.exports = {
 var Reflux = require('reflux');
 
 var actions = Reflux.createActions(
-  ["load"]
+  ["load","loadUserData"]
 );
 
 module.exports = actions;
@@ -30581,7 +30589,7 @@ var Navbar = React.createClass({displayName: "Navbar",
 });
 
 module.exports = Navbar;
-},{"../actions/loginAction":251,"../stores/loginStore":260,"react":228,"react-router":83,"reflux":244}],255:[function(require,module,exports){
+},{"../actions/loginAction":251,"../stores/loginStore":261,"react":228,"react-router":83,"reflux":244}],255:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var ReactDOM = require('react-dom');
@@ -30590,6 +30598,7 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var browserHistory = ReactRouter.browserHistory;
 var Home = require('./pages/Home/Home');
+var Dashboard = require('./pages/Home/Dashboard');
 var Contact = require('./pages/Contact/Contact');
 var Login = require('./pages/Login/Login');
 var App = require('./commons/App');
@@ -30603,7 +30612,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 52');
+console.log('updated 62');
 
 ReactDOM.render(
   React.createElement(Router, {history: browserHistory}, 
@@ -30611,13 +30620,14 @@ ReactDOM.render(
       React.createElement(IndexRoute, {component: Home}), 
       React.createElement(Route, {path: "home", component: Home}), 
       React.createElement(Route, {path: "contact", component: Contact}), 
-      React.createElement(Route, {path: "login", component: Login})
+      React.createElement(Route, {path: "login", component: Login}), 
+      React.createElement(Route, {path: "dashboard", component: Dashboard})
     )
   )
   ,
   document.getElementById('content')
 );
-},{"./commons/App":252,"./pages/Contact/Contact":256,"./pages/Home/Home":257,"./pages/Login/Login":258,"react":228,"react-dom":53,"react-router":83}],256:[function(require,module,exports){
+},{"./commons/App":252,"./pages/Contact/Contact":256,"./pages/Home/Dashboard":257,"./pages/Home/Home":258,"./pages/Login/Login":259,"react":228,"react-dom":53,"react-router":83}],256:[function(require,module,exports){
 var React = require('react');
 
 
@@ -30704,6 +30714,127 @@ var Reflux = require('reflux');
 var moment = require('moment');
 var Router = ReactRouter.Router;
 var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
+var dataStore = require('../../stores/dataStore');
+var dataAction = require('../../actions/dataAction');
+var config = require('../../../global-config/global.config');
+
+var Dashboard = React.createClass({displayName: "Dashboard",
+  mixins : [Reflux.listenTo(dataStore, 'onDataUpdate')],
+  getInitialState : function() {
+    return {
+      blogData : null
+    };
+  },
+  onDataUpdate : function(data) {
+    this.setState({
+      blogData : data
+    });
+  },
+  loadUserData : function() {
+    dataAction.loadUserData(1);
+  },
+  componentDidMount : function() {
+    this.loadUserData();
+  },
+  render : function() {
+    var renderObj;
+    if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
+      renderObj = React.createElement(UserBlogList, {blogs: this.state.blogData.blogs, page: this.state.blogData.page, totalPages: this.state.blogData.totalPages});
+    } else {
+      renderObj = null;
+    }
+    return (
+      React.createElement("div", null, 
+        React.createElement("div", {className: "container dashboard-preview"}, 
+        React.createElement(BlogBody, null), 
+        React.createElement("hr", null), 
+        renderObj
+        )
+      )
+    );
+  }
+});
+
+var BlogBody = React.createClass({displayName: "BlogBody",
+  componentDidMount : function() {
+    CKEDITOR.replace( 'blog');
+  },
+  render : function() {
+    return (
+      React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "row form-group"}, 
+          React.createElement("textarea", {className: "form-control", rows: "8", name: "body", id: "blog"}
+          )
+        ), 
+        React.createElement("div", {className: "row form-group"}, 
+          React.createElement("input", {type: "text", className: "form-control", name: "tags", placeholder: "Tags in comma separated format", id: "tags"})
+        ), 
+        React.createElement("div", {className: "row form-group"}, 
+          React.createElement("input", {type: "text", className: "form-control", name: "category", placeholder: "Categories in comma separated format", id: "category"})
+        ), 
+        React.createElement("div", {className: "row form-group pull-right"}, 
+          React.createElement("button", {type: "buttton", className: "btn btn-success", id: "btnBlogAdd"}, "Post")
+        )
+      )
+    );
+  }
+});
+
+var UserBlogList = React.createClass({displayName: "UserBlogList",
+  loadNext : function(e) {
+    console.log('Load Next clicked');
+    if(this.props.page == this.props.totalPages) {
+      console.log('single page only');
+      return false;
+    }
+  },
+  render : function() {
+    var posts = [];
+    var i = 0;
+    this.props.blogs.forEach(function(blog) {
+      ++i;
+      posts.push(React.createElement(FullBlog, {blog: blog, key: blog._id}));
+      posts.push(React.createElement("hr", {key: i}));
+    }.bind(this));
+    return (
+      React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"}, 
+              posts, 
+              React.createElement("ul", {className: "pager"}, 
+                  React.createElement("li", {className: this.props.page == this.props.totalPages ? "next disabled" : "next"}, 
+                      React.createElement("a", {onClick: this.loadNext}, "Older Posts →")
+                  )
+              )
+          )
+      )
+    );
+  }
+});
+
+var FullBlog = React.createClass({displayName: "FullBlog",
+  render : function() {
+    return (
+      React.createElement("div", {className: "post-preview"}, 
+          React.createElement("a", {id: this.props.blog._id, onClick: this.showBlog}, 
+              React.createElement("h2", {className: "post-title"}, 
+                  this.props.blog.title
+              )
+          ), 
+          React.createElement("p", {className: "post-meta"}, "Posted by ", React.createElement("a", {href: "javascript:void(0)"}, this.props.blog.author), " on ", moment(this.props.blog.date).format(config.dateFormat))
+      )
+    );
+  }
+});
+module.exports = Dashboard;
+},{"../../../global-config/global.config":249,"../../actions/dataAction":250,"../../stores/dataStore":260,"moment":49,"react":228,"react-router":83,"reflux":244}],258:[function(require,module,exports){
+var React = require('react');
+var ReactRouter = require('react-router');
+var Reflux = require('reflux');
+var moment = require('moment');
+var Router = ReactRouter.Router;
+var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
 var dataStore = require('../../stores/dataStore');
 var dataAction = require('../../actions/dataAction');
 var config = require('../../../global-config/global.config');
@@ -30790,6 +30921,14 @@ var Home = React.createClass({displayName: "Home",
       }.bind(this)
     });
   },
+  processBack : function() {
+    this.setState({
+      showBlog : {
+        isShowingBlog : false,
+        blog : null
+      }
+    });
+  },
   loadData : function() {
     dataAction.load(1);
   },
@@ -30799,7 +30938,7 @@ var Home = React.createClass({displayName: "Home",
   render : function() {
     var renderObj;
     if(this.state.showBlog.isShowingBlog) {
-      renderObj = React.createElement(FullBlogPost, {blog: this.state.showBlog.blog});
+      renderObj = React.createElement(FullBlogPost, {back: this.processBack, blog: this.state.showBlog.blog});
     } else if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
       renderObj = React.createElement(BlogList, {onShowBlog: this.onShowBlog, 
       blogs: this.state.blogData.blogs, page: this.state.blogData.page, totalPages: this.state.blogData.totalPages});
@@ -30872,6 +31011,9 @@ var FullBlogPost = React.createClass({displayName: "FullBlogPost",
       React.createElement("article", null, 
         React.createElement("div", {className: "container"}, 
             React.createElement("div", {className: "row"}, 
+              React.createElement("a", {onClick: this.props.back}, React.createElement("span", {className: "glyphicon glyphicon-chevron-left glyphicon-links"}))
+            ), 
+            React.createElement("div", {className: "row"}, 
                 React.createElement("div", {className: "col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1", dangerouslySetInnerHTML: {__html: this.props.blog.body}}
                 )
             )
@@ -30882,7 +31024,7 @@ var FullBlogPost = React.createClass({displayName: "FullBlogPost",
 });
 
 module.exports = Home;
-},{"../../../global-config/global.config":249,"../../actions/dataAction":250,"../../stores/dataStore":259,"moment":49,"react":228,"react-router":83,"reflux":244}],258:[function(require,module,exports){
+},{"../../../global-config/global.config":249,"../../actions/dataAction":250,"../../stores/dataStore":260,"moment":49,"react":228,"react-router":83,"reflux":244}],259:[function(require,module,exports){
 var React = require('react');
 var Reflux = require('reflux');
 var ReactRouter = require('react-router');
@@ -30982,8 +31124,7 @@ var Login = React.createClass({displayName: "Login",
       });
       window.localStorage.setItem('user',data.user);
       window.localStorage.setItem('token',data.token);
-      //browserHistory.push('/dashboard');
-      alert('Logged in');
+      browserHistory.push('dashboard');
     }
     if(data.hasOwnProperty('errorCode') && data.errorCode == null) {
       errorView.html('');
@@ -31134,7 +31275,7 @@ var Login = React.createClass({displayName: "Login",
   }
 });
 module.exports = Login;
-},{"../../actions/loginAction":251,"../../stores/loginStore":260,"react":228,"react-router":83,"reflux":244}],259:[function(require,module,exports){
+},{"../../actions/loginAction":251,"../../stores/loginStore":261,"react":228,"react-router":83,"reflux":244}],260:[function(require,module,exports){
 var Reflux = require('reflux');
 var actions = require('../actions/dataAction');
 
@@ -31151,7 +31292,8 @@ var store = Reflux.createStore({
     totalPages : 0
   },
   restURL : {
-    getAllDataURL : '/api/blog/getAll'
+    getAllDataURL : '/api/blog/getAll',
+    getUserDataURL : '/api/blog'
   },
   onLoad : function(page) {
     console.log('Inside onLoad');
@@ -31186,11 +31328,48 @@ var store = Reflux.createStore({
         this.trigger(this.data);
       }.bind(this)
     });
+  },
+  onLoadUserData : function(page) {
+    console.log('Inside onLoadUserData');
+    //load latest blogs for particular user
+    $.ajax({
+      type : 'GET',
+      url : this.restURL.getUserDataURL,
+      headers : {
+        'Authorization' : window.localStorage.getItem('token')
+      },
+      dataType : 'json',
+      cache : false,
+      error : function(err) {
+        console.log('Error occurred : ' + err.message);
+        console.log(err.error);
+      }.bind(this),
+      success : function(response) {
+        if(response.hasOwnProperty('total') && response.total > 0) {
+          this.data = {
+            blogs : response.docs,
+            totalBlogs : response.total,
+            blogsPerPage : response.limit,
+            page : response.page,
+            totalPages : response.pages
+          };
+        } else {
+          this.data = {
+            blogs : null,
+            totalBlogs : 0,
+            blogsPerPage : 0,
+            page : 0,
+            totalPages : 0
+          };
+        }
+        this.trigger(this.data);
+      }.bind(this)
+    });
   }
 });
 
 module.exports = store;
-},{"../actions/dataAction":250,"reflux":244}],260:[function(require,module,exports){
+},{"../actions/dataAction":250,"reflux":244}],261:[function(require,module,exports){
 var Reflux = require('reflux');
 var actions = require('../actions/loginAction');
 

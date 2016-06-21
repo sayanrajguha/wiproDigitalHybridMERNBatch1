@@ -68,7 +68,7 @@ hr.small {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .navbar-custom .navbar-brand {
-  font-weight: 800;;
+  font-weight: 800;
 }
 .navbar-custom .nav li a {
   text-transform: uppercase;
@@ -122,6 +122,12 @@ content: "\2014 \2009";
   color : rgb(121, 85, 72) !important;
   text-shadow: 4px 4px 6px rgba(255, 255, 255, 1);
 }
+.glyphicon-links {
+  cursor: pointer;
+}
+.dashboard-preview {
+  padding-top: 100px;
+}
 
 @media only screen and (min-width: 768px) {
   .navbar-custom {
@@ -134,7 +140,7 @@ content: "\2014 \2009";
   }
   .navbar-custom .navbar-brand:hover,
   .navbar-custom .navbar-brand:focus {
-    color: rgba(255, 255, 255, 0.8);
+    color: #a6a6a6;
   }
   .navbar-custom .nav li a {
     color: #795548;

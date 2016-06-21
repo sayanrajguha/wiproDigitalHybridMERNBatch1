@@ -6,6 +6,7 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var browserHistory = ReactRouter.browserHistory;
 var Home = require('./pages/Home/Home');
+var Dashboard = require('./pages/Home/Dashboard');
 var Contact = require('./pages/Contact/Contact');
 var Login = require('./pages/Login/Login');
 var App = require('./commons/App');
@@ -19,7 +20,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 52');
+console.log('updated 62');
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -28,6 +29,7 @@ ReactDOM.render(
       <Route path="home" component={Home} />
       <Route path="contact" component={Contact} />
       <Route path="login" component={Login} />
+      <Route path="dashboard" component={Dashboard} />
     </Route>
   </Router>
   ,

@@ -1,7 +1,7 @@
 var Reflux = require('reflux');
 
 var actions = Reflux.createActions(
-  ["load"]
+  ["load","loadUserData"]
 );
 
 module.exports = actions;
