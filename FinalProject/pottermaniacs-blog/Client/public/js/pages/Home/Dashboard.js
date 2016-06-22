@@ -100,7 +100,7 @@ var BlogBody = React.createClass({
     var data = {
       title : this.refs.title.value,
       body : editor.getData(),
-      hidden : this.refs.hidden.checked,
+      hidden : !this.refs.hidden.checked,
       tags : this.refs.tags.value.split(' ').join(),
       category : this.refs.category.value.split(' ').join()
     };
@@ -131,13 +131,13 @@ var BlogBody = React.createClass({
           </textarea>
         </div>
         <div className="row control-group">
-            <div className="form-group col-xs-12 floating-label-form-group controls">
+            <div className="form-group col-xs-12 floating-label-form-group controls post-meta">
                 <label>Tags</label>
                 <input type="text" ref="tags" className="form-control" autoComplete="off" id="tagList" name="tags" required />
             </div>
         </div>
         <div className="row control-group">
-            <div className="form-group col-xs-12 floating-label-form-group controls">
+            <div className="form-group col-xs-12 floating-label-form-group controls post-meta">
                 <label>Categories</label>
                 <input type="text" className="form-control" ref="category" autoComplete="off" id="categoryList" name="category" required />
             </div>
@@ -145,7 +145,7 @@ var BlogBody = React.createClass({
         <div className="row form-group">
           <div className="pull-left checkbox checkbox-success">
             <input type="checkbox" name="hidden" value="true" ref="hidden" id="hidden" />
-            <label for="hidden">Publish?</label>
+            <label for="hidden">Publish</label>
           </div>
           <div className="pull-right">
             <button type="button" onClick={this.handlePostClick} className="btn btn-success" id="btnBlogAdd">Post</button>

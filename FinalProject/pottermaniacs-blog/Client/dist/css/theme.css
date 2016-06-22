@@ -128,7 +128,10 @@ content: "\2014 \2009";
 .dashboard-preview {
   padding-top: 100px;
 }
-
+.post-meta {
+  padding-left: 0;
+  padding-right: 0;
+}
 @media only screen and (min-width: 768px) {
   .navbar-custom {
     background: transparent;

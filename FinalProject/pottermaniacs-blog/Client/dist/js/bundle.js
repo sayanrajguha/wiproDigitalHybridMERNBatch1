@@ -30814,7 +30814,7 @@ var BlogBody = React.createClass({displayName: "BlogBody",
     var data = {
       title : this.refs.title.value,
       body : editor.getData(),
-      hidden : this.refs.hidden.checked,
+      hidden : !this.refs.hidden.checked,
       tags : this.refs.tags.value.split(' ').join(),
       category : this.refs.category.value.split(' ').join()
     };
@@ -30845,13 +30845,13 @@ var BlogBody = React.createClass({displayName: "BlogBody",
           )
         ), 
         React.createElement("div", {className: "row control-group"}, 
-            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls post-meta"}, 
                 React.createElement("label", null, "Tags"), 
                 React.createElement("input", {type: "text", ref: "tags", className: "form-control", autoComplete: "off", id: "tagList", name: "tags", required: true})
             )
         ), 
         React.createElement("div", {className: "row control-group"}, 
-            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls post-meta"}, 
                 React.createElement("label", null, "Categories"), 
                 React.createElement("input", {type: "text", className: "form-control", ref: "category", autoComplete: "off", id: "categoryList", name: "category", required: true})
             )
@@ -30859,7 +30859,7 @@ var BlogBody = React.createClass({displayName: "BlogBody",
         React.createElement("div", {className: "row form-group"}, 
           React.createElement("div", {className: "pull-left checkbox checkbox-success"}, 
             React.createElement("input", {type: "checkbox", name: "hidden", value: "true", ref: "hidden", id: "hidden"}), 
-            React.createElement("label", {for: "hidden"}, "Publish?")
+            React.createElement("label", {for: "hidden"}, "Publish")
           ), 
           React.createElement("div", {className: "pull-right"}, 
             React.createElement("button", {type: "button", onClick: this.handlePostClick, className: "btn btn-success", id: "btnBlogAdd"}, "Post")
