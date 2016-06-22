@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get(['/','/home','/contact','/about','/login'], function(req, res, next) {
   console.log('rendering check.html');
   res.render('check.html');
   //res.json({message : 'App running fine. Default root served...'});

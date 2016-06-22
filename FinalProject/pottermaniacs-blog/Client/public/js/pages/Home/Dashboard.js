@@ -27,6 +27,28 @@ var Dashboard = React.createClass({
   componentDidMount : function() {
     this.loadUserData();
   },
+  postBlog : function(data) {
+    //create blog post
+    $.ajax({
+      type : 'POST',
+      url : config.blogURL,
+      headers : {
+        'Authorization' : window.localStorage.getItem('token')
+      },
+      data : data,
+      dataType : 'json',
+      cache : false,
+      error : function(err) {
+        console.log('Error occurred : ' + err.message);
+        console.log(err.error);
+      }.bind(this),
+      success : function(response) {
+        if(response.hasOwnProperty('statusCode') && response.statusCode == 200) {
+          this.loadUserData();
+        }
+      }.bind(this)
+    });
+  },
   render : function() {
     var renderObj;
     if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
@@ -37,7 +59,7 @@ var Dashboard = React.createClass({
     return (
       <div>
         <div className="container dashboard-preview">
-        <BlogBody />
+        <BlogBody postBlog={this.postBlog} />
         <hr />
         {renderObj}
         </div>
@@ -48,23 +70,86 @@ var Dashboard = React.createClass({
 
 var BlogBody = React.createClass({
   componentDidMount : function() {
-    CKEDITOR.replace( 'blog');
+    //CKEDITOR.replace( 'blog');
+    CKEDITOR.replace( 'blog', {
+    	extraPlugins: 'autogrow',
+      autoGrow_minHeight: 200,
+    	autoGrow_maxHeight: 800,
+    	// Remove the Resize plugin as it does not make sense to use it in conjunction with the AutoGrow plugin.
+    	removePlugins: 'resize'
+    });
+    $('#tagList').tagsInput({
+      'defaultText':'Tag1 Tag2 Tag3...',
+      'delimiter': [' '],
+      'width' : '100%',
+      'height' : 'inherit',
+      'autosize' : false,
+      'removeWithBackspace' : true
+    });
+    $('#categoryList').tagsInput({
+      'defaultText':'Category1 Category2...',
+      'delimiter': [' '],
+      'width' : '100%',
+      'height' : 'inherit',
+      'autosize' : false,
+      'removeWithBackspace' : true
+    });
+  },
+  handlePostClick : function() {
+    var editor = CKEDITOR.instances["blog"];
+    var data = {
+      title : this.refs.title.value,
+      body : editor.getData(),
+      hidden : this.refs.hidden.checked,
+      tags : this.refs.tags.value.split(' ').join(),
+      category : this.refs.category.value.split(' ').join()
+    };
+    this.clear();
+    this.props.postBlog(data);
+  },
+  clear : function() {
+    var editor = CKEDITOR.instances["blog"];
+    this.refs.title.value='';
+    editor.setData('');
+    this.refs.hidden.checked=false;
+    this.refs.tags.value='';
+    this.refs.category.value='';
   },
   render : function() {
     return (
       <div className="container">
+        <div className="row control-group">
+            <div className="form-group col-xs-12 floating-label-form-group controls">
+                <label>Title</label>
+                <input type="text" className="form-control" ref="title" autoComplete="off" placeholder="Blog Title"
+                 id="title" name="title" required />
+            </div>
+        </div>
+        <hr />
         <div className="row form-group">
           <textarea className="form-control" rows="8" name="body" id="blog">
           </textarea>
         </div>
-        <div className="row form-group">
-          <input type="text" className="form-control" name="tags" placeholder="Tags in comma separated format" id="tags" />
+        <div className="row control-group">
+            <div className="form-group col-xs-12 floating-label-form-group controls">
+                <label>Tags</label>
+                <input type="text" ref="tags" className="form-control" autoComplete="off" id="tagList" name="tags" required />
+            </div>
+        </div>
+        <div className="row control-group">
+            <div className="form-group col-xs-12 floating-label-form-group controls">
+                <label>Categories</label>
+                <input type="text" className="form-control" ref="category" autoComplete="off" id="categoryList" name="category" required />
+            </div>
         </div>
         <div className="row form-group">
-          <input type="text" className="form-control" name="category" placeholder="Categories in comma separated format" id="category" />
-        </div>
-        <div className="row form-group pull-right">
-          <button type="buttton" className="btn btn-success" id="btnBlogAdd">Post</button>
+          <div className="pull-left checkbox checkbox-success">
+            <input type="checkbox" name="hidden" value="true" ref="hidden" id="hidden" />
+            <label for="hidden">Publish?</label>
+          </div>
+          <div className="pull-right">
+            <button type="button" onClick={this.handlePostClick} className="btn btn-success" id="btnBlogAdd">Post</button>
+          </div>
         </div>
       </div>
     );

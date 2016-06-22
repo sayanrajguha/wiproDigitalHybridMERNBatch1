@@ -30392,7 +30392,8 @@ module.exports = warning;
 }).call(this,require('_process'))
 },{"_process":51}],249:[function(require,module,exports){
 module.exports = {
-  dateFormat : 'Do MMMM YYYY'
+  dateFormat : 'Do MMMM YYYY',
+  blogURL : '/api/blog'
 }
 },{}],250:[function(require,module,exports){
 var Reflux = require('reflux');
@@ -30527,7 +30528,10 @@ var Navbar = React.createClass({displayName: "Navbar",
         React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1", key: "1"}, 
             React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
                 React.createElement("li", null, 
-                    React.createElement(Link, {to: "home"}, "My Home")
+                    React.createElement(Link, {to: "home"}, "Blog Feed")
+                ), 
+                React.createElement("li", null, 
+                    React.createElement(Link, {to: "dashboard"}, "My Blogs")
                 ), 
                 React.createElement("li", null, 
                     React.createElement(Link, {to: "about"}, "About")
@@ -30612,7 +30616,7 @@ var App = require('./commons/App');
 //     });
 //   }
 // }
-console.log('updated 62');
+console.log('updated 78');
 
 ReactDOM.render(
   React.createElement(Router, {history: browserHistory}, 
@@ -30737,6 +30741,28 @@ var Dashboard = React.createClass({displayName: "Dashboard",
   componentDidMount : function() {
     this.loadUserData();
   },
+  postBlog : function(data) {
+    //create blog post
+    $.ajax({
+      type : 'POST',
+      url : config.blogURL,
+      headers : {
+        'Authorization' : window.localStorage.getItem('token')
+      },
+      data : data,
+      dataType : 'json',
+      cache : false,
+      error : function(err) {
+        console.log('Error occurred : ' + err.message);
+        console.log(err.error);
+      }.bind(this),
+      success : function(response) {
+        if(response.hasOwnProperty('statusCode') && response.statusCode == 200) {
+          this.loadUserData();
+        }
+      }.bind(this)
+    });
+  },
   render : function() {
     var renderObj;
     if(this.state.blogData && this.state.blogData.blogs && this.state.blogData.totalBlogs >= 1) {
@@ -30747,7 +30773,7 @@ var Dashboard = React.createClass({displayName: "Dashboard",
     return (
       React.createElement("div", null, 
         React.createElement("div", {className: "container dashboard-preview"}, 
-        React.createElement(BlogBody, null), 
+        React.createElement(BlogBody, {postBlog: this.postBlog}), 
         React.createElement("hr", null), 
         renderObj
         )
@@ -30758,23 +30784,86 @@ var Dashboard = React.createClass({displayName: "Dashboard",
 
 var BlogBody = React.createClass({displayName: "BlogBody",
   componentDidMount : function() {
-    CKEDITOR.replace( 'blog');
+    //CKEDITOR.replace( 'blog');
+    CKEDITOR.replace( 'blog', {
+    	extraPlugins: 'autogrow',
+      autoGrow_minHeight: 200,
+    	autoGrow_maxHeight: 800,
+    	// Remove the Resize plugin as it does not make sense to use it in conjunction with the AutoGrow plugin.
+    	removePlugins: 'resize'
+    });
+    $('#tagList').tagsInput({
+      'defaultText':'Tag1 Tag2 Tag3...',
+      'delimiter': [' '],
+      'width' : '100%',
+      'height' : 'inherit',
+      'autosize' : false,
+      'removeWithBackspace' : true
+    });
+    $('#categoryList').tagsInput({
+      'defaultText':'Category1 Category2...',
+      'delimiter': [' '],
+      'width' : '100%',
+      'height' : 'inherit',
+      'autosize' : false,
+      'removeWithBackspace' : true
+    });
+  },
+  handlePostClick : function() {
+    var editor = CKEDITOR.instances["blog"];
+    var data = {
+      title : this.refs.title.value,
+      body : editor.getData(),
+      hidden : this.refs.hidden.checked,
+      tags : this.refs.tags.value.split(' ').join(),
+      category : this.refs.category.value.split(' ').join()
+    };
+    this.clear();
+    this.props.postBlog(data);
+  },
+  clear : function() {
+    var editor = CKEDITOR.instances["blog"];
+    this.refs.title.value='';
+    editor.setData('');
+    this.refs.hidden.checked=false;
+    this.refs.tags.value='';
+    this.refs.category.value='';
   },
   render : function() {
     return (
       React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "row control-group"}, 
+            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                React.createElement("label", null, "Title"), 
+                React.createElement("input", {type: "text", className: "form-control", ref: "title", autoComplete: "off", placeholder: "Blog Title", 
+                 id: "title", name: "title", required: true})
+            )
+        ), 
+        React.createElement("hr", null), 
         React.createElement("div", {className: "row form-group"}, 
           React.createElement("textarea", {className: "form-control", rows: "8", name: "body", id: "blog"}
           )
         ), 
-        React.createElement("div", {className: "row form-group"}, 
-          React.createElement("input", {type: "text", className: "form-control", name: "tags", placeholder: "Tags in comma separated format", id: "tags"})
+        React.createElement("div", {className: "row control-group"}, 
+            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                React.createElement("label", null, "Tags"), 
+                React.createElement("input", {type: "text", ref: "tags", className: "form-control", autoComplete: "off", id: "tagList", name: "tags", required: true})
+            )
+        ), 
+        React.createElement("div", {className: "row control-group"}, 
+            React.createElement("div", {className: "form-group col-xs-12 floating-label-form-group controls"}, 
+                React.createElement("label", null, "Categories"), 
+                React.createElement("input", {type: "text", className: "form-control", ref: "category", autoComplete: "off", id: "categoryList", name: "category", required: true})
+            )
         ), 
         React.createElement("div", {className: "row form-group"}, 
-          React.createElement("input", {type: "text", className: "form-control", name: "category", placeholder: "Categories in comma separated format", id: "category"})
-        ), 
-        React.createElement("div", {className: "row form-group pull-right"}, 
-          React.createElement("button", {type: "buttton", className: "btn btn-success", id: "btnBlogAdd"}, "Post")
+          React.createElement("div", {className: "pull-left checkbox checkbox-success"}, 
+            React.createElement("input", {type: "checkbox", name: "hidden", value: "true", ref: "hidden", id: "hidden"}), 
+            React.createElement("label", {for: "hidden"}, "Publish?")
+          ), 
+          React.createElement("div", {className: "pull-right"}, 
+            React.createElement("button", {type: "button", onClick: this.handlePostClick, className: "btn btn-success", id: "btnBlogAdd"}, "Post")
+          )
         )
       )
     );

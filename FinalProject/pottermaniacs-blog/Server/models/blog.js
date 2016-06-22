@@ -13,7 +13,10 @@ var BlogSchema = new Schema({
             type : Date,
             default : Date.now()
   },
-  hidden : Boolean,
+  hidden : {
+            type : Boolean,
+            default : false
+  },
   meta : {
             likes : Number,
             tags : [String],
