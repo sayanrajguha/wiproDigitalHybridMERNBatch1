@@ -21,6 +21,8 @@ gulp.task('copy',function(){
         .pipe(gulp.dest('dist'));
     gulp.src('public/css/*.*')
         .pipe(gulp.dest('dist/css'));
+    gulp.src('public/css/images/*.*')
+        .pipe(gulp.dest('dist/css/images'));
     gulp.src('public/global-scripts/*.*')
         .pipe(gulp.dest('dist/global-scripts'));
     gulp.src('public/global-config/*.*')

@@ -12,7 +12,7 @@ var users = require('./api/routes/users/users');
 var config = require('./config/config');
 var app = express();
 
-var port = process.env.PORT || 8080,
+var port = 3000,
 publicDir = '../Client/dist',
 fs = require('fs');
 // view engine setup

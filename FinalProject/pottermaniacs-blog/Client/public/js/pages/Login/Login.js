@@ -160,7 +160,7 @@ var Login = React.createClass({
                       </div>
                       <br />
                       <div className="success text-center alert-danger">
-                        <p class=""></p>
+                        <p className=""></p>
                       </div>
                       <div className="row">
                           <div className="form-group col-xs-12 text-center">
@@ -230,7 +230,7 @@ var Login = React.createClass({
                       </div>
                       <br />
                       <div className="success text-center alert-danger">
-                        <p class=""></p>
+                        <p className=""></p>
                       </div>
                       <br />
                       <div className="row">

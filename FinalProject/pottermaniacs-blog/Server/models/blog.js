@@ -36,7 +36,7 @@ module.exports.createBlogPost = function(newBlogPost, callback) {
 }
 
 module.exports.getAllBlogPosts = function(page, callback) {
-  Blog.paginate({},{page : page, sort : {date : -1}, limit : config.pageLimit}, callback);
+  Blog.paginate({hidden : false},{page : page, sort : {date : -1}, limit : config.pageLimit}, callback);
 }
 
 module.exports.getBlogsByUser = function(username, page, callback) {

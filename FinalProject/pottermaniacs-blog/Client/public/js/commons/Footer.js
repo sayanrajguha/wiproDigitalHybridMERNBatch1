@@ -40,7 +40,7 @@ var Footer = React.createClass({
                       &emsp;
                        All rights reserved.
                       </p>
-                      <p className="copyright text-muted"> Theme : Clean Blog Theme by <a href='http://startbootstrap.com'>Start Bootstrap</a></p>
+                      <p className="copyright text-muted"> Base Theme : Clean Blog Theme by <a href='http://startbootstrap.com'>Start Bootstrap</a></p>
                   </div>
               </div>
           </div>

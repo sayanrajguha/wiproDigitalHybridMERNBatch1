@@ -114,6 +114,7 @@ var BlogBody = React.createClass({
     this.refs.hidden.checked=false;
     this.refs.tags.value='';
     this.refs.category.value='';
+    $('.tagsinput').find('span').remove();
   },
   render : function() {
     return (
@@ -145,7 +146,7 @@ var BlogBody = React.createClass({
         <div className="row form-group">
           <div className="pull-left checkbox checkbox-success">
             <input type="checkbox" name="hidden" value="true" ref="hidden" id="hidden" />
-            <label for="hidden">Publish</label>
+            <label>Publish</label>
           </div>
           <div className="pull-right">
             <button type="button" onClick={this.handlePostClick} className="btn btn-success" id="btnBlogAdd">Post</button>
